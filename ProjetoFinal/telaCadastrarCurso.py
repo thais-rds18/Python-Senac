@@ -14,7 +14,7 @@ class Cadastrar_Curso:
         self.conexao = conexao
         self.janela08 = janela
         self.janela08.title('Editar Salas')  # Trocar o título da janela
-        #self.janela08.iconbitmap('icone.ico')  # Verificar se tem o ícone no seu arquivo
+        self.janela08.iconbitmap('icone.ico')  # Verificar se tem o ícone no seu arquivo
         self.janela08.geometry('890x650+300+10')
         self.janela08['bg'] = '#F5F5F5'
         self.janela08.resizable(width=False, height=False)

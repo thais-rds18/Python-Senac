@@ -15,7 +15,7 @@ class Inicio:
         self.conexao = conexao
         self.janela_login = janela
         self.janela_login.title('Tela de Acesso')
-    #    self.janela_login.iconbitmap('icone.ico')
+        self.janela_login.iconbitmap('icone.ico')
         self.janela_login.geometry('1440x750+50+10')
         self.janela_login['bg'] = '#F5F5F5'  # BOTÃO LARANJA #DE8708
         self.janela_login.resizable(False, False)
