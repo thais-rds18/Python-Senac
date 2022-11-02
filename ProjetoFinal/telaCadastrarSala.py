@@ -132,7 +132,7 @@ def telaCadastrarSalas():
 #------------------ Fora da Classe ------------------
 
     def conexaoBanco():
-        caminho = 'C:\\projeto\\banco\\integração\\banco.db'
+        caminho = 'Modelo Banco de dados\\bancoDedados.db'
         conexao = None
         try:
             conexao = sqlite3.connect(caminho)

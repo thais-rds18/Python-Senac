@@ -27,12 +27,12 @@ class Inicio:
         self.label_logoSenac = tk.Label(self.janela_login, image=self.imagem)
         self.label_logoSenac.place(relx=0.44, rely=0.12, relheight=0.25, relwidth=0.18)
 
-        self.label_login = tk.Label(self.janela_login, text='Login:', font='Inter 17 bold', bg='white')
+        self.label_login = tk.Label(self.janela_login, text='Login:', font='Inter 17 bold', bg='#F5F5F5')
         self.label_login.place(relx=0.30, rely=0.45, relheight=0.05, relwidth=0.06)
         self.entrada_login = tk.Entry(self.janela_login, bg='lightgray', font='Inter 17')
         self.entrada_login.place(relx=0.40, rely=0.45, relheight=0.05, relwidth=0.30)
 
-        self.label_senha = tk.Label(self.janela_login, text='Senha:', font='Inter 17 bold', bg='white')
+        self.label_senha = tk.Label(self.janela_login, text='Senha:', font='Inter 17 bold', bg='#F5F5F5')
         self.label_senha.place(relx=0.30, rely=0.53, relheight=0.05, relwidth=0.07)
         self.entrada_senha = tk.Entry(self.janela_login, bg='lightgray', font='Inter 17', show='*')
         self.entrada_senha.place(relx=0.40, rely=0.53, relheight=0.05, relwidth=0.30)
@@ -131,7 +131,8 @@ class Inicio:
 #------------------ Fora da Classe ------------------
 
 def conexaoBanco():
-    caminho = 'C:\\projeto\\banco\\integração\\banco.db'
+    # caminho = 'Modelo Banco de dados\\bancoDedados.sql'
+    caminho = 'Modelo Banco de dados\\bancoDedados.db'
     conexao = None
     try:
         conexao = sqlite3.connect(caminho)
