@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter as tk
 from tkinter import ttk
 from telaCadastrarSala import telaCadastrarSalas
+from teste import testesalas
 
 
 def telaSalas():
@@ -93,67 +94,117 @@ def telaSalas():
             self.frameSalas1.place(relx=0.32, relwidth=0.65, rely=0.29, relheight=0.15)
             self.imgBotaoSala1 = tk.PhotoImage(file='botaosala.png')
             self.botaoSala1 = tk.Button(self.telaSalasGeral, image=self.imgBotaoSala1)
-            self.botaoSala1.place(relx=0.321, relwidth=0.649, rely=0.291, relheight=0.148)
-            self.rotuloSala1 = tk.Label(self.telaSalasGeral, text='Sala 1', font='Inter 19 bold')
+            # self.botaoSala1.place(relx=0.321, relwidth=0.649, rely=0.291, relheight=0.148)
+            self.rotuloSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 19 bold')
             self.rotuloSala1.place(relx=0.35, rely=0.30)
-            self.obsSala1 = tk.Label(self.telaSalasGeral, text='Obs: Todos Intel Core i7', font='Inter 15')
+            self.obsSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.obsSala1.place(relx=0.35, rely=0.35)
-            self.nroPCsSala1 = tk.Label(self.telaSalasGeral, text='20', font='Inter 15')
+            self.nroPCsSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.nroPCsSala1.place(relx=0.35, rely=0.39)
-            self.nroCadeirasSala1 = tk.Label(self.telaSalasGeral, text='20', font='Inter 15')
+            self.nroCadeirasSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.nroCadeirasSala1.place(relx=0.40, rely=0.39)
-            self.andarpoloSala1 = tk.Label(self.telaSalasGeral, text='4º andar, Recife Sede', font='Inter 16')
+            self.andarpoloSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala1.place(relx=0.45, rely=0.305)
-            self.dispManhaSala1 = tk.Label(self.telaSalasGeral, text='Manhã', font='Inter 15')
+            self.dispManhaSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.dispManhaSala1.place(relx=0.75, rely=0.305)
-            self.dispTardeSala1 = tk.Label(self.telaSalasGeral, text='Tarde', font='Inter 15')
+            self.dispTardeSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.dispTardeSala1.place(relx=0.75, rely=0.35)
-            self.dispNoiteSala1 = tk.Label(self.telaSalasGeral, text='Noite', font='Inter 15')
+            self.dispNoiteSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.dispNoiteSala1.place(relx=0.751, rely=0.39)
 
             self.frameSalas2 = tk.Frame(self.telaSalasGeral, relief='solid', borderwidth=0.5, width=250, height=350)
             self.frameSalas2.place(relx=0.32, relwidth=0.65, rely=0.46, relheight=0.15)
             self.imgBotaoSala2 = tk.PhotoImage(file='botaosala.png')
             self.botaoSala2 = tk.Button(self.telaSalasGeral, image=self.imgBotaoSala1)
-            self.botaoSala2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
-            self.rotuloSala2 = tk.Label(self.telaSalasGeral, text='Sala 2', font='Inter 19 bold')
+            # self.botaoSala2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
+            self.rotuloSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 19 bold')
             self.rotuloSala2.place(relx=0.35, rely=0.47)
-            self.obsSala2 = tk.Label(self.telaSalasGeral, text='Obs: Todos Intel Core i5', font='Inter 15')
+            self.obsSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.obsSala2.place(relx=0.35, rely=0.52)
-            self.nroPCsSala2 = tk.Label(self.telaSalasGeral, text='20', font='Inter 15')
+            self.nroPCsSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.nroPCsSala2.place(relx=0.35, rely=0.56)
-            self.nroCadeirasSala2 = tk.Label(self.telaSalasGeral, text='20', font='Inter 15')
+            self.nroCadeirasSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.nroCadeirasSala2.place(relx=0.40, rely=0.56)
-            self.andarpoloSala2 = tk.Label(self.telaSalasGeral, text='5º andar, Recife Sede', font='Inter 16')
+            self.andarpoloSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala2.place(relx=0.45, rely=0.475)
-            self.dispManhaSala2 = tk.Label(self.telaSalasGeral, text='Manhã', font='Inter 15')
+            self.dispManhaSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.dispManhaSala2.place(relx=0.75, rely=0.475)
-            self.dispTardeSala2 = tk.Label(self.telaSalasGeral, text='Tarde', font='Inter 15')
+            self.dispTardeSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.dispTardeSala2.place(relx=0.75, rely=0.52)
-            self.dispNoiteSala2 = tk.Label(self.telaSalasGeral, text='Noite', font='Inter 15')
+            self.dispNoiteSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.dispNoiteSala2.place(relx=0.751, rely=0.56)
 
             self.frameSalas3 = tk.Frame(self.telaSalasGeral, relief='solid', borderwidth=0.5, width=250, height=350)
             self.frameSalas3.place(relx=0.32, relwidth=0.65, rely=0.63, relheight=0.15)
             self.imgBotaoSala3 = tk.PhotoImage(file='botaosala.png')
             self.botaoSala3 = tk.Button(self.telaSalasGeral, image=self.imgBotaoSala1)
-            self.botaoSala3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
-            self.rotuloSala3 = tk.Label(self.telaSalasGeral, text='Sala 3', font='Inter 19 bold')
+            # self.botaoSala3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
+            self.rotuloSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 19 bold')
             self.rotuloSala3.place(relx=0.35, rely=0.64)
-            self.obsSala3 = tk.Label(self.telaSalasGeral, text='Obs: Todos Intel Core i3', font='Inter 15')
+            self.obsSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.obsSala3.place(relx=0.35, rely=0.69)
-            self.nroPCsSala3 = tk.Label(self.telaSalasGeral, text='20', font='Inter 15')
+            self.nroPCsSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.nroPCsSala3.place(relx=0.35, rely=0.73)
-            self.nroCadeirasSala3 = tk.Label(self.telaSalasGeral, text='20', font='Inter 15')
+            self.nroCadeirasSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.nroCadeirasSala3.place(relx=0.40, rely=0.73)
-            self.andarpoloSala3 = tk.Label(self.telaSalasGeral, text='6º andar, Recife Sede', font='Inter 16')
+            self.andarpoloSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala3.place(relx=0.45, rely=0.645)
-            self.dispManhaSala3 = tk.Label(self.telaSalasGeral, text='Manhã', font='Inter 15')
+            self.dispManhaSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.dispManhaSala3.place(relx=0.75, rely=0.645)
-            self.dispTardeSala3 = tk.Label(self.telaSalasGeral, text='Tarde', font='Inter 15')
+            self.dispTardeSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.dispTardeSala3.place(relx=0.75, rely=0.69)
-            self.dispNoiteSala3 = tk.Label(self.telaSalasGeral, text='Noite', font='Inter 15')
+            self.dispNoiteSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.dispNoiteSala3.place(relx=0.751, rely=0.73)
+
+            salas = testesalas()
+            if len(salas) < 1:
+                pass
+            else:
+                contadorsala = 0
+                for v in salas.values():
+                    nnsala = v[0]
+                    nnandar = v[1]
+                    nnpolo = v[2]
+                    nncadeira = v[3]
+                    nncomputador = v[4]
+                    nntelevisor = v[5]
+                    nntelaretratil = v[6]
+                    nnmesa = v[7]
+                    nnprojetor = v[8]
+                    nnquadro = v[9]
+                    nnarcondicionado = v[10]
+                    contadorsala += 1
+                    if contadorsala == 1:
+                        self.rotuloSala1.config(text=nnsala)
+                        self.obsSala1.config(text='Nenhuma observacao inserida')
+                        self.nroPCsSala1.config(text=nncomputador)
+                        self.nroCadeirasSala1.config(text=nncadeira)
+                        self.andarpoloSala1.config(text=f'{nnandar}, {nnpolo}')
+                        self.dispManhaSala1.config(text='Manhã')
+                        self.dispTardeSala1.config(text='Tarde')
+                        self.dispNoiteSala1.config(text='Noite')
+                        self.botaoSala1.place(relx=0.321, relwidth=0.649, rely=0.291, relheight=0.148)
+                    elif contadorsala == 2:
+                        self.rotuloSala2.config(text=nnsala)
+                        self.obsSala2.config(text='Nenhuma observacao inserida')
+                        self.nroPCsSala2.config(text=nncomputador)
+                        self.nroCadeirasSala2.config(text=nncadeira)
+                        self.andarpoloSala2.config(text=f'{nnandar}, {nnpolo}')
+                        self.dispManhaSala2.config(text='Manhã')
+                        self.dispTardeSala2.config(text='Tarde')
+                        self.dispNoiteSala2.config(text='Noite')
+                        self.botaoSala2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
+                    elif contadorsala == 3:
+                        self.rotuloSala3.config(text=nnsala)
+                        self.obsSala3.config(text='Nenhuma observacao inserida')
+                        self.nroPCsSala3.config(text=nncomputador)
+                        self.nroCadeirasSala3.config(text=nncadeira)
+                        self.andarpoloSala3.config(text=f'{nnandar}, {nnpolo}')
+                        self.dispManhaSala3.config(text='Manhã')
+                        self.dispTardeSala3.config(text='Tarde')
+                        self.dispNoiteSala3.config(text='Noite')
+                        self.botaoSala3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
+
 
             # ----------------------------
 
