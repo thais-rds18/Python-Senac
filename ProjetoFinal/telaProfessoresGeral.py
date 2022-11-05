@@ -52,7 +52,7 @@ def telaProfessores():
 
             self.caixa_selecao_area_conhecimento.current()
             self.caixa_selecao_area_conhecimento.bind("<<ComboboxSelected>>", self.selecionar())
-            self.caixa_selecao_area_conhecimento.place(relx=0.17, relwidth=0.2, rely=0.285)
+            self.caixa_selecao_area_conhecimento.place(relx=0.027, relwidth=0.2, rely=0.33)
 
             # botão
             self.botao_cadastrar_novo_professor = tk.Button(self.professores, text='Cadastrar novo professor',
