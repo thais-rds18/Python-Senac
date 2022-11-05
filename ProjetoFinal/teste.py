@@ -35,3 +35,16 @@ def testesalas():
     c.execute(sql)
     c.close()
     return dicionario_salas
+
+def testeprofs():
+    sql = 'SELECT * FROM professor order by nome'
+    linhas = comandosSQL(sql)
+    dicionario_profs = {}
+    for i in linhas:
+        dicionario_profs[i[0]] = i
+
+    c = conexao.cursor()
+    # c.execute("SELECT * FROM tb_login WHERE usuario = ? AND senha = ?", (self.campo1.get(), self.campo2.get()))
+    c.execute(sql)
+    c.close()
+    return dicionario_profs
