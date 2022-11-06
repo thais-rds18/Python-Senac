@@ -1,13 +1,14 @@
-from distutils.cmd import Command
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk
 import sqlite3
 from sqlite3 import Error
 from tkinter import messagebox
-
-from telaProfessoresGeral import telaProfessores
-from telaSalasGeral import telaSalas
+from tkcalendar import DateEntry
+from ProjetoFinal.telaCadastrarCurso import telaCadastrarCurso
+from ProjetoFinal.telaCadastrarUsuario import telaCadastrarUsuario
+from ProjetoFinal.telaProfessoresGeral import telaProfessores
+from ProjetoFinal.telaSalasGeral import telaSalas
 
 
 class Inicio:
@@ -47,7 +48,7 @@ class Inicio:
         # self.botao_entrar.bind('<Any-Button>', self.clique_confirmar)
 
         self.botao_cadastrar = tk.Button(self.janela_login, text='CADASTRAR', font='Inter 17 bold', fg='white',
-                                         bg='#004AAD', relief=GROOVE)
+                                         bg='#004AAD', relief=GROOVE, command=lambda: telaCadastrarUsuario())
         self.botao_cadastrar.place(relx=0.58, rely=0.70, relheight=0.08, relwidth=0.15)
         # self.botao_cadastrar.bind('<Return>') receberá a função para cadastrar futuramente
         # self.botao_cadastrar.bind('<Any-Button>') receberá a função para cadastrar futuramente
@@ -60,9 +61,6 @@ class Inicio:
 
         self.label_inferior = tk.Label(self.janela_login, bg='#004AAD')
         self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
-
-    def botao_cadastrar_clique(self):
-        pass
 
     def botao_esqueci_senha(self):
         pass
@@ -81,7 +79,7 @@ class Inicio:
         self.label_superior.place(relx=0, relwidth=1, relheight=0.08, rely=0)
 
         self.botao_cadastrar_novo_curso = tk.Button(self.inicial, bg='#004AAD', text='Cadastrar novo curso',
-                                                    font='Inter 20 bold', fg='white', width=17)
+                                                    font='Inter 20 bold', fg='white', width=17, command=lambda: telaCadastrarCurso())
         self.botao_cadastrar_novo_curso.place(relx=0.03, rely=0.16)
 
         self.imagem = tk.PhotoImage(file=r'..\ProjetoFinal\logosenac.png')
@@ -93,33 +91,22 @@ class Inicio:
 
         self.botao_Salas = tk.Button(self.inicial, text='SALAS', font='Inter 17 bold', fg='white', bg='orange',
                                      width=13,
-                                     relief=FLAT, command=lambda: self.botao_Salas_Salas())
+                                     relief=FLAT, command=lambda: telaSalas())
         self.botao_Salas.place(rely=0.65, relx=0.3)
 
         self.botao_Professores = tk.Button(self.inicial, text='PROFESSORES', font='Inter 17 bold', fg='white',
                                            bg='orange',
-                                           width=17, relief=FLAT, command=lambda: self.botao_Professores_Salas())
+                                           width=17, relief=FLAT, command=lambda: telaProfessores())
         self.botao_Professores.place(rely=0.65, relx=0.55)
 
         self.label_inferior = tk.Label(self.inicial, bg='#004AAD')
         self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
 
-
         self.inicial.mainloop()
-
-    def botao_cadastrar_novo_curso_Salas(self):
-        pass
-
-    def botao_Salas_Salas(self):
-        telaSalas()
-
-    def botao_Professores_Salas(self):
-        telaProfessores()
 
     def login_inicial(self):
         c = self.conexao.cursor()
         sql = "SELECT * FROM login WHERE usuario = '" + self.entrada_login.get() + "' AND senha = '" + self.entrada_senha.get() + "'"
-       # c.execute("SELECT * FROM tb_login WHERE usuario = ? AND senha = ?", (self.campo1.get(), self.campo2.get()))
         c.execute(sql)
         if c.fetchall():
             self.telaInicial()
@@ -128,10 +115,9 @@ class Inicio:
         c.close()
 
 
-#------------------ Fora da Classe ------------------
+# ------------------ Fora da Classe ------------------
 
 def conexaoBanco():
-    # caminho = 'Modelo Banco de dados\\bancoDedados.sql'
     caminho = 'Modelo Banco de dados\\bancoDedados.db'
     conexao = None
     try:

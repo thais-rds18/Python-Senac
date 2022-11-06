@@ -13,7 +13,7 @@ def telaCadastrarSalas():
             self.cadastrar_salas = janela_salas_cadastro
             self.cadastrar_salas.title('Cadastrar Salas')  # Trocar o título da janela
             self.cadastrar_salas.iconbitmap('icone.ico')  # Verificar se tem o ícone no seu arquivo
-            self.cadastrar_salas.geometry('1440x750+50+10')
+            self.cadastrar_salas.geometry('890x650+300+10')
             self.cadastrar_salas['bg'] = '#F5F5F5'
             self.cadastrar_salas.resizable(width=False, height=False)
 
@@ -39,7 +39,7 @@ def telaCadastrarSalas():
                                             anchor='w')
             self.label_nome_sala.place(relx=0.16, relwidth=0.08, rely=0.33, relheight=0.035)
             self.entrada_nome_sala = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
-            self.entrada_nome_sala.place(relx=0.247, relwidth=0.213, rely=0.33, relheight=0.035)
+            self.entrada_nome_sala.place(relx=0.22, relwidth=0.24, rely=0.33, relheight=0.035)
 
             self.label_cadeiras = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Cadeiras:', font='Inter 17 bold',
                                            anchor='w')
@@ -70,9 +70,9 @@ def telaCadastrarSalas():
 
             self.label_andar = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Andar:', font='Inter 17 bold',
                                         anchor='w')
-            self.label_andar.place(relx=0.515, relwidth=0.0443, rely=0.33, relheight=0.035)
+            self.label_andar.place(relx=0.515, relwidth=0.055, rely=0.33, relheight=0.035)
             self.entrada_andar = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
-            self.entrada_andar.place(relx=0.5633, relwidth=0.2517, rely=0.33, relheight=0.035)
+            self.entrada_andar.place(relx=0.5733, relwidth=0.2417, rely=0.33, relheight=0.035)
 
             self.label_mesas = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Mesas:', font='Inter 17 bold',
                                         anchor='w')
@@ -109,11 +109,6 @@ def telaCadastrarSalas():
             self.label_inferior = tk.Label(self.cadastrar_salas, bg='#004AAD')
             self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
 
-        def cadastrar(self):
-            pass
-
-        def botao_cadastrar_cadastrar_sala(self):
-            pass
 
         def cadastrar(self):
             try:
@@ -121,7 +116,7 @@ def telaCadastrarSalas():
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()
-                    sql = "INSERT INTO salas (nome, cadeiras, computadores, televisores, tela_retratil, polo, mesas, projetores, quadros, ar_condicionado, andar ) VALUES ( '" + self.entrada_nome_sala.get() + "', '" + self.entrada_cadeiras.get() + "','" + self.entrada_computadores.get()+ "', '" + self.entrada_televisores.get() + "', '" + self.entrada_Tela_retratil.get() + "', '" + self.entrada_polo.get() + "' , '" + self.entrada_mesas.get() + "', '" + self.entrada_projetores.get() + "', '" + self.entrada_quadros.get() + "', '" + self.entrada_ar_condicionado.get() + "', '" + self.entrada_andar.get() + "')"
+                    sql = "INSERT INTO salas (nome, cadeiras, computadores, televisores, tela_retratil, polo, mesas, projetores, quadros, ar_condicionado, andar, ocupado_manha, ocupado_tarde, ocupado_noite ) VALUES ( '" + self.entrada_nome_sala.get() + "', '" + self.entrada_cadeiras.get() + "','" + self.entrada_computadores.get()+ "', '" + self.entrada_televisores.get() + "', '" + self.entrada_Tela_retratil.get() + "', '" + self.entrada_polo.get() + "' , '" + self.entrada_mesas.get() + "', '" + self.entrada_projetores.get() + "', '" + self.entrada_quadros.get() + "', '" + self.entrada_ar_condicionado.get() + "', '" + self.entrada_andar.get() + "', 0, 0, 0)"
                     c.execute(sql)
                     self.conexao.commit()
                     messagebox.showinfo('Caixa de Mensagem', 'Dados Inseridos com sucesso!')
@@ -147,3 +142,5 @@ def telaCadastrarSalas():
     objetoSalasGeral = TelaCadastroSalas(janela_salas_cadastro, conexao)
     janela_salas_cadastro.mainloop()
     conexao.close()
+
+telaCadastrarSalas()

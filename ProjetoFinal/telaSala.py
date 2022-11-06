@@ -56,3 +56,5 @@ def telaSala():
     sala_individual = tk.Toplevel()
     objetoSalasGeral = TelaSala(sala_individual)
     sala_individual.mainloop()
+
+telaSala()

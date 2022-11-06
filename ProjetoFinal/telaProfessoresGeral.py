@@ -1,8 +1,10 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk
-from telaCadastrarProfessor import telaCadastrarProfessores
-from teste import testeprofs
+import sqlite3
+from sqlite3 import Error
+
+from ProjetoFinal.telaCadastrarProfessor import telaCadastrarProfessores
 
 
 def telaProfessores():
@@ -36,8 +38,9 @@ def telaProfessores():
 
             # Filtros
             # checkbox
+            var1 = tk.IntVar()
             self.checkbox_ordem_alfabetica = tk.Checkbutton(self.professores, text='Ordem alfabética', font='Inter 12',
-                                                            bg='#F5F5F5')
+                                                            variable=var1, onvalue=1, offvalue=0, bg='#F5F5F5', command=lambda: self.exibirProf(self.filtrarProfs(var1)))
             self.checkbox_ordem_alfabetica.place(relx=0.036, rely=0.225)
             self.caixa_selecao_area_conhecimento = ttk.Combobox(self.professores, values=[], width=10)
 
@@ -51,22 +54,20 @@ def telaProfessores():
             self.label_area_conhecimento.place(relx=0.0528, rely=0.285)
 
             self.caixa_selecao_area_conhecimento.current()
-            self.caixa_selecao_area_conhecimento.bind("<<ComboboxSelected>>", self.selecionar())
+            self.caixa_selecao_area_conhecimento.bind("<<ComboboxSelected>>")
             self.caixa_selecao_area_conhecimento.place(relx=0.027, relwidth=0.2, rely=0.33)
 
             # botão
             self.botao_cadastrar_novo_professor = tk.Button(self.professores, text='Cadastrar novo professor',
                                                             font='Inter 17 bold', fg='white', bg='#F59714', relief=FLAT,
-                                                            command=lambda: self.cadastrar_professores())
+                                                            command=lambda: telaCadastrarProfessores())
             self.botao_cadastrar_novo_professor.place(relx=0.7, rely=0.2)
 
             # Teste para exibição das salas
 
             self.frameProf1 = tk.Frame(self.professores, relief='solid', borderwidth=0.5, width=250, height=350)
             self.frameProf1.place(relx=0.32, relwidth=0.65, rely=0.29, relheight=0.15)
-            self.imgBotaoProf1 = tk.PhotoImage(file='botaosala.png')
-            self.botaoProf1 = tk.Button(self.professores, image=self.imgBotaoProf1)
-            # self.botaoProf1.place(relx=0.321, relwidth=0.649, rely=0.291, relheight=0.148)
+            self.botaoProf1 = tk.Button(self.professores)
             self.nomeProf1 = tk.Label(self.professores, text='', font='Inter 19 bold')
             self.nomeProf1.place(relx=0.35, rely=0.30)
             self.espProf1 = tk.Label(self.professores, text='', font='Inter 15')
@@ -86,15 +87,13 @@ def telaProfessores():
 
             self.frameProf2 = tk.Frame(self.professores, relief='solid', borderwidth=0.5, width=250, height=350)
             self.frameProf2.place(relx=0.32, relwidth=0.65, rely=0.46, relheight=0.15)
-            self.imgBotaoProf2 = tk.PhotoImage(file='botaosala.png')
-            self.botaoProf2 = tk.Button(self.professores, image=self.imgBotaoProf2)
-            # self.botaoProf2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
+            self.botaoProf2 = tk.Button(self.professores)
             self.nomeProf2 = tk.Label(self.professores, text='', font='Inter 19 bold')
             self.nomeProf2.place(relx=0.35, rely=0.47)
             self.espProf2 = tk.Label(self.professores, text='', font='Inter 15')
             self.espProf2.place(relx=0.35, rely=0.52)
-            self.nroPCsProf2 = tk.Label(self.professores, text='', font='Inter 15')
-            self.nroPCsProf2.place(relx=0.35, rely=0.56)
+            self.foneProf2 = tk.Label(self.professores, text='', font='Inter 15')
+            self.foneProf2.place(relx=0.35, rely=0.56)
             self.emailProf2 = tk.Label(self.professores, text='', font='Inter 15')
             self.emailProf2.place(relx=0.48, rely=0.56)
             self.cpfProf2 = tk.Label(self.professores, text='', font='Inter 16')
@@ -108,15 +107,13 @@ def telaProfessores():
 
             self.frameProf3 = tk.Frame(self.professores, relief='solid', borderwidth=0.5, width=250, height=350)
             self.frameProf3.place(relx=0.32, relwidth=0.65, rely=0.63, relheight=0.15)
-            self.imgBotaoProf3 = tk.PhotoImage(file='botaosala.png')
-            self.botaoProf3 = tk.Button(self.professores, image=self.imgBotaoProf3)
-            # self.botaoProf3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
+            self.botaoProf3 = tk.Button(self.professores)
             self.nomeProf3 = tk.Label(self.professores, text='', font='Inter 19 bold')
             self.nomeProf3.place(relx=0.35, rely=0.64)
             self.espProf3 = tk.Label(self.professores, text='', font='Inter 15')
             self.espProf3.place(relx=0.35, rely=0.69)
-            self.nroPCsProf3 = tk.Label(self.professores, text='', font='Inter 15')
-            self.nroPCsProf3.place(relx=0.35, rely=0.73)
+            self.foneProf3 = tk.Label(self.professores, text='', font='Inter 15')
+            self.foneProf3.place(relx=0.35, rely=0.73)
             self.emailProf3 = tk.Label(self.professores, text='', font='Inter 15')
             self.emailProf3.place(relx=0.48, rely=0.73)
             self.cpfProf3 = tk.Label(self.professores, text='', font='Inter 16')
@@ -128,12 +125,25 @@ def telaProfessores():
             self.dispNoiteProf3 = tk.Label(self.professores, text='', font='Inter 15')
             self.dispNoiteProf3.place(relx=0.751, rely=0.73)
 
-            profs = testeprofs()
+            self.exibirProf(self.filtrarProfs(var1))
+
+        def filtrarProfs(self, var1):
+            sql = ''
+            if var1.get() == 1:
+                sql = 'SELECT * From professor order by nome'
+
+            elif var1.get() == 0:
+                sql = 'SELECT * From professor'
+
+            profs = comandosSQL(sql)
+            return profs
+
+        def exibirProf(self, profs):
             if len(profs) < 1:
                 pass
             else:
                 contadorprof = 0
-                for v in profs.values():
+                for v in profs:
                     nnnome = v[0]
                     nncpf = v[1]
                     nnemail = v[2]
@@ -153,24 +163,37 @@ def telaProfessores():
                         self.foneProf2.config(text=nnfone)
                         self.emailProf2.config(text=nnemail)
                         self.cpfProf2.config(text=nncpf)
-                        self.botaoSala2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
+                        self.botaoProf2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
                     elif contadorprof == 3:
                         self.nomeProf3.config(text=nnnome)
                         self.espProf3.config(text=nnesp)
                         self.foneProf3.config(text=nnfone)
                         self.emailProf3.config(text=nnemail)
                         self.cpfProf3.config(text=nncpf)
-                        self.botaoSala3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
+                        self.botaoProf3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
 
-            # ----------------------------
 
-        def selecionar(self):
-            pass
+    def conexaoBanco():
+        caminho = 'Modelo Banco de dados\\bancoDedados.db'
+        conexao = None
 
-        def cadastrar_professores(self):
-            telaCadastrarProfessores()
+        try:
+            conexao = sqlite3.connect(caminho)
+            print('Conexao aceita')
+        except Error as ex:
+            print('Erro de conexão:', ex)
+        return conexao
 
+    def comandosSQL(sql):
+        c = conexao.cursor()
+        c.execute(sql)
+        return c.fetchall()
+
+    conexao = conexaoBanco()
     janela_professores_geral = tk.Toplevel()
     objetoProfessoresGeral = TelaProfessores(janela_professores_geral)
     janela_professores_geral.mainloop()
+    conexao.close()
 
+
+telaProfessores()
