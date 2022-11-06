@@ -773,7 +773,7 @@ def telaCadastrarSalas():
             self.cadastrar_salas = janela_salas_cadastro
             self.cadastrar_salas.title('Cadastrar Salas')  # Trocar o título da janela
             self.cadastrar_salas.iconbitmap('icone.ico')  # Verificar se tem o ícone no seu arquivo
-            self.cadastrar_salas.geometry('890x650+300+10')
+            self.cadastrar_salas.geometry('1440x650+300+10')
             self.cadastrar_salas['bg'] = '#F5F5F5'
             self.cadastrar_salas.resizable(width=False, height=False)
 
