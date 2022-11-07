@@ -4,6 +4,8 @@ from tkinter import ttk
 import sqlite3
 from sqlite3 import Error
 
+from ProjetoFinal.telaCadastrarSala import telaCadastrarSalas
+
 
 def telaSalas():
     class TelaSalas:
@@ -28,7 +30,7 @@ def telaSalas():
             self.titulo.place(relx=0.115, rely=0.095)
 
             self.botaoCadastro = tk.Button(self.telaSalasGeral, bg='#F59714', text='Cadastrar nova sala', relief='flat',
-                                           font='Inter 16 bold', fg='#F5F5F5', height=1, width=20)
+                                           font='Inter 16 bold', fg='#F5F5F5', height=1, width=20, command= lambda: telaCadastrarSalas())
             self.botaoCadastro.place(relx=0.75, relwidth=0.22, rely=0.15)
 
             self.filtro = tk.PhotoImage(file=r'..\ProjetoFinal\filtro.png')

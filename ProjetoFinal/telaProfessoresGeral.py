@@ -195,5 +195,3 @@ def telaProfessores():
     janela_professores_geral.mainloop()
     conexao.close()
 
-
-telaProfessores()
