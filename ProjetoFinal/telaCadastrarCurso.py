@@ -80,7 +80,7 @@ def telaCadastrarCurso():
             self.label_polo = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Polo:',
                                    font='Inter 16 bold', anchor='w')
             self.label_polo.place(relx=0.05, relwidth=0.21, rely=0.65, relheight=0.035)
-            self.entrada_polo = ttk.Combobox(self.janela_cadastrar_curso, values=[" ", "Faculdade Senac", "Edíficio João Barros"],
+            self.entrada_polo = ttk.Combobox(self.janela_cadastrar_curso, values=[" ", "Faculdade Senac", "Recife Sede", "Aprendizagem"],
                                          font='Inter 17')
             self.entrada_polo.current(0)
             self.entrada_polo.bind("<<ComboboxSelected>>")
@@ -106,7 +106,7 @@ def telaCadastrarCurso():
         def cadastrarCurso(self):
             turno = ''
             try:
-                if self.entrada_nome.get() and self.entrada_Hora_Total.get() == '' and self.entrada_Hora_Diaria.get() == '' and self.entrada_inicio.get() == '' and self.entrada_fim.get() == '' and self.entrada_CPF_professor.get() == '' and self.entrada_Sala.get() == '' and self.entrada_polo.get() == '' and self.entrada_andar.get() == '' and self.entrada_Turno.get()== '':
+                if self.entrada_nome.get() or self.entrada_Hora_Total.get() == '' or self.entrada_Hora_Diaria.get() == '' or self.entrada_inicio.get() == '' or self.entrada_fim.get() == '' or self.entrada_CPF_professor.get() == '' or self.entrada_Sala.get() == '' or self.entrada_polo.get() == '' or self.entrada_andar.get() == '' or self.entrada_Turno.get()== '':
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()

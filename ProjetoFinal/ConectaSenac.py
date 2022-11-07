@@ -22,7 +22,7 @@ class Inicio:
         self.label_superior.place(relx=0, relwidth=1, relheight=0.08, rely=0)
 
         self.imagem = tk.PhotoImage(file=r'..\ProjetoFinal\logosenac.png')
-        self.label_logoSenac = tk.Label(self.janela_login, image=self.imagem)
+        self.label_logoSenac = tk.Label(self.janela_login, image=self.imagem, bg='#F5F5F5')
         self.label_logoSenac.place(relx=0.44, rely=0.12, relheight=0.25, relwidth=0.18)
 
         self.label_login = tk.Label(self.janela_login, text='Login:', font='Inter 17 bold', bg='#F5F5F5')
@@ -76,7 +76,8 @@ class Inicio:
         self.label_superior.place(relx=0, relwidth=1, relheight=0.08, rely=0)
 
         self.botao_cadastrar_novo_curso = tk.Button(self.inicial, bg='#004AAD', text='Cadastrar novo curso',
-                                                    font='Inter 20 bold', fg='white', width=17, command=lambda: telaCadastrarCurso())
+                                                    font='Inter 20 bold', fg='white', width=17,
+                                                    command=lambda: telaCadastrarCurso())
         self.botao_cadastrar_novo_curso.place(relx=0.03, rely=0.16)
 
         self.imagem = tk.PhotoImage(file=r'..\ProjetoFinal\logosenac.png')
@@ -193,7 +194,7 @@ def telaCadastrarUsuario():
 
         def cadastrarUsuario(self):
             try:
-                if self.entrada_usuario.get() and self.entrada_cpf.get() == '' and self.entrada_email.get() == '' and self.entrada_nascimento.get() == '' and self.entrada_senha.get() == '' and self.entrada_confirmar_senha.get() == '':
+                if self.entrada_usuario.get() or self.entrada_cpf.get() == '' or self.entrada_email.get() == '' or self.entrada_nascimento.get() == '' or self.entrada_senha.get() == '' or self.entrada_confirmar_senha.get() == '':
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()
@@ -218,7 +219,7 @@ def telaSalas():
             self.telaSalasGeral.title('Salas')
             self.telaSalasGeral.iconbitmap('icone.ico')
             self.telaSalasGeral.geometry('1440x750+50+10')
-            self.telaSalasGeral.config(bg='#F5F5F5')
+            self.telaSalasGeral['bg'] = '#F5F5F5'
             self.telaSalasGeral.resizable(width=False, height=False)
 
             self.header = tk.Frame(self.telaSalasGeral, bg='#004AAD', height=95)
@@ -227,20 +228,21 @@ def telaSalas():
             self.footer.place(relx=0, relwidth=1, rely=0.92, relheight=0.08)
 
             self.logo = tk.PhotoImage(file=r'..\ProjetoFinal\logo_simbolo.png')
-            self.rotuloLogo = tk.Label(self.telaSalasGeral, image=self.logo)
+            self.rotuloLogo = tk.Label(self.telaSalasGeral, image=self.logo, bg='#F5F5F5')
             self.rotuloLogo.place(relx=0.025, rely=0.09)
 
-            self.titulo = tk.Label(self.telaSalasGeral, text='Salas', font='Inter 28 bold')
+            self.titulo = tk.Label(self.telaSalasGeral, text='Salas', font='Inter 28 bold', bg='#F5F5F5')
             self.titulo.place(relx=0.115, rely=0.095)
 
             self.botaoCadastro = tk.Button(self.telaSalasGeral, bg='#F59714', text='Cadastrar nova sala', relief='flat',
-                                           font='Inter 16 bold', fg='#F5F5F5', height=1, width=20, command=lambda : telaCadastrarSalas())
+                                           font='Inter 16 bold', fg='#F5F5F5', height=1, width=20,
+                                           command=lambda: telaCadastrarSalas())
             self.botaoCadastro.place(relx=0.75, relwidth=0.22, rely=0.15)
 
             self.filtro = tk.PhotoImage(file=r'..\ProjetoFinal\filtro.png')
-            self.rotuloFiltro = tk.Label(self.telaSalasGeral, image=self.filtro)
+            self.rotuloFiltro = tk.Label(self.telaSalasGeral, image=self.filtro, bg='#F5F5F5')
             self.rotuloFiltro.place(relx=0.025, rely=0.2)
-            self.textoFiltro = tk.Label(self.telaSalasGeral, text='Filtrar', font='Inter 20')
+            self.textoFiltro = tk.Label(self.telaSalasGeral, text='Filtrar', font='Inter 20', bg='#F5F5F5')
             self.textoFiltro.place(relx=0.07, rely=0.21)
             self.lateralFiltro = tk.Frame(self.telaSalasGeral, relief='solid', borderwidth=0.5, width=250, height=350)
             self.lateralFiltro.place(relx=0.025, relwidth=0.2, rely=0.29, relheight=0.6)
@@ -312,15 +314,15 @@ def telaSalas():
             self.andarpoloSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala1.place(relx=0.45, rely=0.305)
 
-            self.sinalDispManhaSala1 = tk.Label(self.telaSalasGeral, text='', width=3, height=1, bg='#F5F5F5')
+            self.sinalDispManhaSala1 = tk.Label(self.telaSalasGeral, text='', width=3, height=1)
             self.dispManhaSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.sinalDispManhaSala1.place(relx=0.73, rely=0.305)
             self.dispManhaSala1.place(relx=0.75, rely=0.305)
-            self.sinalDispTardeSala1 = tk.Label(self.telaSalasGeral, text='', width=3, height=1, bg='#F5F5F5')
+            self.sinalDispTardeSala1 = tk.Label(self.telaSalasGeral, text='', width=3, height=1)
             self.dispTardeSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.sinalDispTardeSala1.place(relx=0.73, rely=0.35)
             self.dispTardeSala1.place(relx=0.75, rely=0.347)
-            self.sinalDispNoiteSala1 = tk.Label(self.telaSalasGeral, text='', width=3, height=1, bg='#F5F5F5')
+            self.sinalDispNoiteSala1 = tk.Label(self.telaSalasGeral, text='', width=3, height=1)
             self.dispNoiteSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.sinalDispNoiteSala1.place(relx=0.73, rely=0.395)
             self.dispNoiteSala1.place(relx=0.751, rely=0.39)
@@ -341,15 +343,15 @@ def telaSalas():
             self.andarpoloSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala2.place(relx=0.45, rely=0.475)
 
-            self.sinalDispManhaSala2 = tk.Label(self.telaSalasGeral, text='', width=3, height=1, bg='#F5F5F5')
+            self.sinalDispManhaSala2 = tk.Label(self.telaSalasGeral, text='', width=3, height=1)
             self.dispManhaSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.sinalDispManhaSala2.place(relx=0.73, rely=0.475)
             self.dispManhaSala2.place(relx=0.75, rely=0.475)
-            self.sinalDispTardeSala2 = tk.Label(self.telaSalasGeral, text='', width=3, height=1, bg='#F5F5F5')
+            self.sinalDispTardeSala2 = tk.Label(self.telaSalasGeral, text='', width=3, height=1)
             self.dispTardeSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.sinalDispTardeSala2.place(relx=0.73, rely=0.52)
             self.dispTardeSala2.place(relx=0.75, rely=0.517)
-            self.sinalDispNoiteSala2 = tk.Label(self.telaSalasGeral, text='', width=3, height=1, bg='#F5F5F5')
+            self.sinalDispNoiteSala2 = tk.Label(self.telaSalasGeral, text='', width=3, height=1)
             self.dispNoiteSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.sinalDispNoiteSala2.place(relx=0.73, rely=0.565)
             self.dispNoiteSala2.place(relx=0.751, rely=0.56)
@@ -370,15 +372,15 @@ def telaSalas():
             self.andarpoloSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala3.place(relx=0.45, rely=0.645)
 
-            self.sinalDispManhaSala3 = tk.Label(self.telaSalasGeral, text='', width=3, height=1, bg='#F5F5F5')
+            self.sinalDispManhaSala3 = tk.Label(self.telaSalasGeral, text='', width=3, height=1)
             self.dispManhaSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.sinalDispManhaSala3.place(relx=0.73, rely=0.645)
             self.dispManhaSala3.place(relx=0.75, rely=0.645)
-            self.sinalDispTardeSala3 = tk.Label(self.telaSalasGeral, text='', width=3, height=1, bg='#F5F5F5')
+            self.sinalDispTardeSala3 = tk.Label(self.telaSalasGeral, text='', width=3, height=1)
             self.dispTardeSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.sinalDispTardeSala3.place(relx=0.73, rely=0.69)
             self.dispTardeSala3.place(relx=0.75, rely=0.687)
-            self.sinalDispNoiteSala3 = tk.Label(self.telaSalasGeral, text='', width=3, height=1, bg='#F5F5F5')
+            self.sinalDispNoiteSala3 = tk.Label(self.telaSalasGeral, text='', width=3, height=1)
             self.dispNoiteSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.sinalDispNoiteSala3.place(relx=0.73, rely=0.736)
             self.dispNoiteSala3.place(relx=0.751, rely=0.73)
@@ -622,7 +624,8 @@ def telaProfessores():
             # checkbox
             var1 = tk.IntVar()
             self.checkbox_ordem_alfabetica = tk.Checkbutton(self.professores, text='Ordem alfabética', font='Inter 12',
-                                                            variable=var1, onvalue=1, offvalue=0, bg='#F5F5F5', command=lambda: self.exibirProf(self.filtrarProfs(var1)))
+                                                            variable=var1, onvalue=1, offvalue=0, bg='#F5F5F5',
+                                                            command=lambda: self.exibirProf(self.filtrarProfs(var1)))
             self.checkbox_ordem_alfabetica.place(relx=0.036, rely=0.225)
             self.caixa_selecao_area_conhecimento = ttk.Combobox(self.professores, values=[], width=10)
 
@@ -773,7 +776,7 @@ def telaCadastrarSalas():
             self.cadastrar_salas = janela_salas_cadastro
             self.cadastrar_salas.title('Cadastrar Salas')  # Trocar o título da janela
             self.cadastrar_salas.iconbitmap('icone.ico')  # Verificar se tem o ícone no seu arquivo
-            self.cadastrar_salas.geometry('1440x650+300+10')
+            self.cadastrar_salas.geometry('890x650+300+10')
             self.cadastrar_salas['bg'] = '#F5F5F5'
             self.cadastrar_salas.resizable(width=False, height=False)
 
@@ -781,89 +784,90 @@ def telaCadastrarSalas():
             self.label_superior.place(relx=0, relwidth=1, relheight=0.08, rely=0)
 
             self.senac_logo = tk.PhotoImage(file=r'..\ProjetoFinal\logo_simbolo.png')
-            self.senac_tituloPag = tk.Label(self.cadastrar_salas, text='Cadastrar Salas', font='Inter 26 bold')
-            self.label_senac_logo = tk.Label(self.cadastrar_salas, image=self.senac_logo)
-            self.label_senac_logo.place(relx=0.1, rely=0.13)
-            self.senac_tituloPag.place(relx=0.19, rely=0.15)
+            self.senac_tituloPag = tk.Label(self.cadastrar_salas, text='Cadastrar Salas', font='Inter 26 bold',
+                                            bg='#F5F5F5')
+            self.label_senac_logo = tk.Label(self.cadastrar_salas, image=self.senac_logo, bg='#F5F5F5')
+            self.label_senac_logo.place(relx=0.0, rely=0.13)
+            self.senac_tituloPag.place(relx=0.15, rely=0.15)
 
             # Entradas
             self.label_polo = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Polo:', font='Inter 17 bold',
                                        anchor='w')
-            self.label_polo.place(relx=0.513, relwidth=0.08, rely=0.23, relheight=0.035)
+            self.label_polo.place(relx=0.513, relwidth=0.16, rely=0.23, relheight=0.035)
             self.entrada_polo = ttk.Combobox(self.cadastrar_salas, width=12,
                                              values=['Faculdade Senac', 'Recife Sede', 'Aprendizagem'])
             self.entrada_polo.current()
-            self.entrada_polo.place(relx=0.57, relwidth=0.213, rely=0.23, relheight=0.035)
+            self.entrada_polo.place(relx=0.6, relwidth=0.213, rely=0.23, relheight=0.035)
 
             self.label_nome_sala = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Nome:', font='Inter 17 bold',
                                             anchor='w')
-            self.label_nome_sala.place(relx=0.16, relwidth=0.08, rely=0.33, relheight=0.035)
+            self.label_nome_sala.place(relx=0.05, relwidth=0.16, rely=0.33, relheight=0.035)
             self.entrada_nome_sala = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
             self.entrada_nome_sala.place(relx=0.22, relwidth=0.24, rely=0.33, relheight=0.035)
 
             self.label_cadeiras = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Cadeiras:', font='Inter 17 bold',
                                            anchor='w')
-            self.label_cadeiras.place(relx=0.16, relwidth=0.075, rely=0.4, relheight=0.035)
+            self.label_cadeiras.place(relx=0.05, relwidth=0.16, rely=0.4, relheight=0.035)
             self.entrada_cadeiras = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
             self.entrada_cadeiras.place(relx=0.242, relwidth=0.218, rely=0.4, relheight=0.035)
 
             self.label_computadores = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Computadores:',
                                                font='Inter 17 bold',
                                                anchor='w')
-            self.label_computadores.place(relx=0.16, relwidth=0.12, rely=0.47, relheight=0.035)
+            self.label_computadores.place(relx=0.05, relwidth=0.20, rely=0.47, relheight=0.035)
             self.entrada_computadores = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
             self.entrada_computadores.place(relx=0.286, relwidth=0.174, rely=0.47, relheight=0.035)
 
             self.label_televisores = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Televisores:',
                                               font='Inter 17 bold',
                                               anchor='w')
-            self.label_televisores.place(relx=0.16, relwidth=0.096, rely=0.54, relheight=0.035)
+            self.label_televisores.place(relx=0.05, relwidth=0.16, rely=0.54, relheight=0.035)
             self.entrada_televisores = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
             self.entrada_televisores.place(relx=0.263, relwidth=0.197, rely=0.54, relheight=0.035)
 
             self.label_Tela_retratil = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Tela retrátil:',
                                                 font='Inter 17 bold',
                                                 anchor='w')
-            self.label_Tela_retratil.place(relx=0.16, relwidth=0.096, rely=0.61, relheight=0.035)
+            self.label_Tela_retratil.place(relx=0.05, relwidth=0.16, rely=0.61, relheight=0.035)
             self.entrada_Tela_retratil = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
             self.entrada_Tela_retratil.place(relx=0.263, relwidth=0.197, rely=0.61, relheight=0.035)
 
             self.label_andar = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Andar:', font='Inter 17 bold',
                                         anchor='w')
-            self.label_andar.place(relx=0.515, relwidth=0.055, rely=0.33, relheight=0.035)
+            self.label_andar.place(relx=0.515, relwidth=0.1, rely=0.33, relheight=0.035)
             self.entrada_andar = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
-            self.entrada_andar.place(relx=0.5733, relwidth=0.2417, rely=0.33, relheight=0.035)
+            self.entrada_andar.place(relx=0.69, relwidth=0.2417, rely=0.33, relheight=0.035)
 
             self.label_mesas = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Mesas:', font='Inter 17 bold',
                                         anchor='w')
-            self.label_mesas.place(relx=0.515, relwidth=0.057, rely=0.4, relheight=0.035)
+            self.label_mesas.place(relx=0.515, relwidth=0.1, rely=0.4, relheight=0.035)
             self.entrada_mesas = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
-            self.entrada_mesas.place(relx=0.576, relwidth=0.239, rely=0.4, relheight=0.035)
+            self.entrada_mesas.place(relx=0.69, relwidth=0.240, rely=0.4, relheight=0.035)
 
             self.label_projetores = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Projetores:',
                                              font='Inter 17 bold', anchor='w')
-            self.label_projetores.place(relx=0.515, relwidth=0.09, rely=0.47, relheight=0.039)
+            self.label_projetores.place(relx=0.515, relwidth=0.14, rely=0.47, relheight=0.039)
             self.entrada_projetores = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
-            self.entrada_projetores.place(relx=0.609, relwidth=0.206, rely=0.47, relheight=0.035)
+            self.entrada_projetores.place(relx=0.725, relwidth=0.205, rely=0.47, relheight=0.035)
 
             self.label_quadros = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Quadros:', font='Inter 17 bold',
                                           anchor='w')
-            self.label_quadros.place(relx=0.515, relwidth=0.075, rely=0.54, relheight=0.035)
+            self.label_quadros.place(relx=0.515, relwidth=0.14, rely=0.54, relheight=0.035)
             self.entrada_quadros = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
-            self.entrada_quadros.place(relx=0.594, relwidth=0.221, rely=0.54, relheight=0.035)
+            self.entrada_quadros.place(relx=0.71, relwidth=0.221, rely=0.54, relheight=0.035)
 
             self.label_ar_condicionado = tk.Label(self.cadastrar_salas, bg='#F5F5F5', text='Ar-condicionado:',
                                                   font='Inter 17 bold',
                                                   anchor='w')
-            self.label_ar_condicionado.place(relx=0.515, relwidth=0.14, rely=0.61, relheight=0.035)
+            self.label_ar_condicionado.place(relx=0.515, relwidth=0.23, rely=0.61, relheight=0.035)
             self.entrada_ar_condicionado = tk.Entry(self.cadastrar_salas, bg='#D9D9D9')
-            self.entrada_ar_condicionado.place(relx=0.659, relwidth=0.157, rely=0.61, relheight=0.035)
+            self.entrada_ar_condicionado.place(relx=0.772, relwidth=0.157, rely=0.61, relheight=0.035)
 
             self.botao_cadastrar_cadastrar_sala = tk.Button(self.cadastrar_salas, text='Cadastrar', fg='white',
                                                             bg='#004AAD',
                                                             font='Inter 17 bold',
                                                             relief=FLAT, command=lambda: self.cadastrar())
-            self.botao_cadastrar_cadastrar_sala.place(relx=0.42, relwidth=0.12, rely=0.75, relheight=0.07)
+            self.botao_cadastrar_cadastrar_sala.place(relx=0.42, relwidth=0.16, rely=0.75, relheight=0.09)
             self.botao_cadastrar_cadastrar_sala.bind('<Any-Button>')
 
             self.label_inferior = tk.Label(self.cadastrar_salas, bg='#004AAD')
@@ -871,7 +875,7 @@ def telaCadastrarSalas():
 
         def cadastrar(self):
             try:
-                if self.entrada_nome_sala.get() and self.entrada_cadeiras.get() == '' and self.entrada_computadores.get() == '' and self.entrada_televisores.get() == '' and self.entrada_Tela_retratil.get() == '' and self.entrada_polo.get() == '' and self.entrada_mesas.get() == '' and self.entrada_projetores.get() == '' and self.entrada_quadros.get() == '' and self.entrada_ar_condicionado.get() == '' and self.entrada_andar.get():
+                if self.entrada_nome_sala.get() == '' or self.entrada_cadeiras.get() == '' or self.entrada_computadores.get() == '' or self.entrada_televisores.get() == '' or self.entrada_Tela_retratil.get() == '' or self.entrada_polo.get() == '' or self.entrada_mesas.get() == '' or self.entrada_projetores.get() == '' or self.entrada_quadros.get() == '' or self.entrada_ar_condicionado.get() == '' or self.entrada_andar.get():
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()
@@ -909,11 +913,12 @@ def telaCadastrarCurso():
             self.label_senac_logo.place(relx=0.032, rely=0.09)
 
             self.label_Cadastro_Curso = tk.Label(self.janela_cadastrar_curso, text='Cadastro Curso', bg='#F5F5F5',
-                                                     font='Inter 28 bold')
+                                                 font='Inter 28 bold')
             self.label_Cadastro_Curso.place(relx=0.15, relwidth=0.40, rely=0.10, relheight=0.15)
 
             # Entradas
-            self.label_nome = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Nome:', font='Inter 17 bold', anchor='w')
+            self.label_nome = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Nome:', font='Inter 17 bold',
+                                       anchor='w')
             self.label_nome.place(relx=0.05, relwidth=0.08, rely=0.25, relheight=0.05)
             self.entrada_nome = tk.Entry(self.janela_cadastrar_curso, bg='#D9D9D9', font='Inter 17')
             self.entrada_nome.place(relx=0.15, relwidth=0.40, rely=0.25, relheight=0.045)
@@ -931,21 +936,27 @@ def telaCadastrarCurso():
             self.entrada_Hora_Diaria = tk.Entry(self.janela_cadastrar_curso, bg='#D9D9D9', font='Inter 17')
             self.entrada_Hora_Diaria.place(relx=0.37, relwidth=0.17, rely=0.45, relheight=0.045)
 
-            self.label_Turno = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Turno:', font='Inter 17 bold', anchor='w')
+            self.label_Turno = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Turno:', font='Inter 17 bold',
+                                        anchor='w')
             self.label_Turno.place(relx=0.56, relwidth=0.09, rely=0.25, relheight=0.05)
-            self.entrada_Turno = ttk.Combobox(self.janela_cadastrar_curso, values=[" ", "Manhã", "Tarde", "Noite"], font='Inter 17')
+            self.entrada_Turno = ttk.Combobox(self.janela_cadastrar_curso, values=[" ", "Manhã", "Tarde", "Noite"],
+                                              font='Inter 17')
             self.entrada_Turno.current(0)
             self.entrada_Turno.bind("<<ComboboxSelected>>")
             self.entrada_Turno.place(relx=0.66, relwidth=0.29, rely=0.25, relheight=0.045)
 
-            self.label_inicio = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Início:', font='Inter 17 bold', anchor='w')
+            self.label_inicio = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Início:',
+                                         font='Inter 17 bold', anchor='w')
             self.label_inicio.place(relx=0.56, relwidth=0.09, rely=0.35, relheight=0.05)
-            self.entrada_inicio = DateEntry(self.janela_cadastrar_curso, locale='pt_BR', dateformat='DD/MM/YYYY', font='Inter 17')
+            self.entrada_inicio = DateEntry(self.janela_cadastrar_curso, locale='pt_BR', dateformat='DD/MM/YYYY',
+                                            font='Inter 17')
             self.entrada_inicio.place(relx=0.66, relwidth=0.28, rely=0.35, relheight=0.045)
 
-            self.label_fim = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Fim:', font='Inter 17 bold', anchor='w')
+            self.label_fim = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Fim:', font='Inter 17 bold',
+                                      anchor='w')
             self.label_fim.place(relx=0.56, relwidth=0.08, rely=0.45, relheight=0.05)
-            self.entrada_fim = DateEntry(self.janela_cadastrar_curso, locale='pt_BR', dateformat='DD/MM/YYYY', font='Inter 17')
+            self.entrada_fim = DateEntry(self.janela_cadastrar_curso, locale='pt_BR', dateformat='DD/MM/YYYY',
+                                         font='Inter 17')
             self.entrada_fim.place(relx=0.66, relwidth=0.28, rely=0.45, relheight=0.045)
 
             self.label_CPF_professor = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='CPF do Professor:',
@@ -963,7 +974,8 @@ def telaCadastrarCurso():
             self.label_polo = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Polo:',
                                        font='Inter 16 bold', anchor='w')
             self.label_polo.place(relx=0.05, relwidth=0.21, rely=0.65, relheight=0.035)
-            self.entrada_polo = ttk.Combobox(self.janela_cadastrar_curso, values=[" ", "Faculdade Senac", "Edíficio João Barros"],
+            self.entrada_polo = ttk.Combobox(self.janela_cadastrar_curso,
+                                             values=[" ", "Faculdade Senac", "Recife Sede", "Aprendizagem"],
                                              font='Inter 17')
             self.entrada_polo.current(0)
             self.entrada_polo.bind("<<ComboboxSelected>>")
@@ -972,13 +984,15 @@ def telaCadastrarCurso():
             self.label_andar = tk.Label(self.janela_cadastrar_curso, bg='#F5F5F5', text='Andar:',
                                         font='Inter 16 bold', anchor='w')
             self.label_andar.place(relx=0.56, relwidth=0.21, rely=0.65, relheight=0.035)
-            self.entrada_andar = ttk.Combobox(self.janela_cadastrar_curso, values=[" ", "1", "2", "3", "4", "5", "6", "7"],
+            self.entrada_andar = ttk.Combobox(self.janela_cadastrar_curso,
+                                              values=[" ", "1", "2", "3", "4", "5", "6", "7"],
                                               font='Inter 17')
             self.entrada_andar.current(0)
             self.entrada_andar.bind('<<ComboboxSelected>>')
             self.entrada_andar.place(relx=0.66, relwidth=0.25, rely=0.65, relheight=0.045)
 
-            self.botao_cadastrar_cadastrar_curso = tk.Button(self.janela_cadastrar_curso, text='Cadastrar', fg='white', bg='#004AAD',
+            self.botao_cadastrar_cadastrar_curso = tk.Button(self.janela_cadastrar_curso, text='Cadastrar', fg='white',
+                                                             bg='#004AAD',
                                                              font='Inter 17 bold',
                                                              relief=FLAT, command=lambda: self.cadastrarCurso())
             self.botao_cadastrar_cadastrar_curso.place(relx=0.42, relwidth=0.15, rely=0.79, relheight=0.07)
@@ -989,7 +1003,7 @@ def telaCadastrarCurso():
         def cadastrarCurso(self):
             turno = ''
             try:
-                if self.entrada_nome.get() and self.entrada_Hora_Total.get() == '' and self.entrada_Hora_Diaria.get() == '' and self.entrada_inicio.get() == '' and self.entrada_fim.get() == '' and self.entrada_CPF_professor.get() == '' and self.entrada_Sala.get() == '' and self.entrada_polo.get() == '' and self.entrada_andar.get() == '' and self.entrada_Turno.get() == '':
+                if self.entrada_nome.get() or self.entrada_Hora_Total.get() == '' or self.entrada_Hora_Diaria.get() == '' or self.entrada_inicio.get() == '' or self.entrada_fim.get() == '' or self.entrada_CPF_professor.get() == '' or self.entrada_Sala.get() == '' or self.entrada_polo.get() == '' or self.entrada_andar.get() == '' or self.entrada_Turno.get() == '':
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()
@@ -1040,7 +1054,7 @@ def telaCadastrarProfessores():
             self.senac_logo = tk.PhotoImage(file=r'..\ProjetoFinal\logo_simbolo.png')
             self.senac_tituloPag = tk.Label(self.cadastrar_professores, text='Cadastro Professores',
                                             font='Inter 26 bold', bg='#F5F5F5')
-            self.label_senac_logo = tk.Label(self.cadastrar_professores, image=self.senac_logo, bg = '#F5F5F5')
+            self.label_senac_logo = tk.Label(self.cadastrar_professores, image=self.senac_logo, bg='#F5F5F5')
             self.label_senac_logo.place(relx=0.05, rely=0.13)
             self.senac_tituloPag.place(relx=0.19, rely=0.15)
 
@@ -1088,7 +1102,7 @@ def telaCadastrarProfessores():
 
         def cadastrarProf(self):
             try:
-                if self.entrada_nome_professor.get() == '' and self.entrada_CPF.get() == '' and self.entrada_email.get() and self.entrada_fone.get() and self.entrada_conhecimento.get():
+                if self.entrada_nome_professor.get() == '' or self.entrada_CPF.get() == '' or self.entrada_email.get() or self.entrada_fone.get() or self.entrada_conhecimento.get():
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()

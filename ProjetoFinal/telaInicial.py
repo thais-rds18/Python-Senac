@@ -25,7 +25,7 @@ class Inicio:
         self.label_superior.place(relx=0, relwidth=1, relheight=0.08, rely=0)
 
         self.imagem = tk.PhotoImage(file=r'..\ProjetoFinal\logosenac.png')
-        self.label_logoSenac = tk.Label(self.janela_login, image=self.imagem)
+        self.label_logoSenac = tk.Label(self.janela_login, image=self.imagem, bg='#F5F5F5')
         self.label_logoSenac.place(relx=0.44, rely=0.12, relheight=0.25, relwidth=0.18)
 
         self.label_login = tk.Label(self.janela_login, text='Login:', font='Inter 17 bold', bg='#F5F5F5')
@@ -111,7 +111,7 @@ class Inicio:
         if c.fetchall():
             self.telaInicial()
         else:
-            messagebox.showerror('Error', 'Senha ou email incorreto!')
+            messagebox.showerror('Error', 'Senha ou Usuario incorreto!')
         c.close()
 
 

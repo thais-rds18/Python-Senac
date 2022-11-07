@@ -74,7 +74,7 @@ def telaCadastrarUsuario():
 
         def cadastrarUsuario(self):
             try:
-                if self.entrada_usuario.get() and self.entrada_cpf.get() == '' and self.entrada_email.get() == '' and self.entrada_nascimento.get() == '' and self.entrada_senha.get() == '' and self.entrada_confirmar_senha.get() == '':
+                if self.entrada_usuario.get() or self.entrada_cpf.get() == '' or self.entrada_email.get() == '' or self.entrada_nascimento.get() == '' or self.entrada_senha.get() == '' or self.entrada_confirmar_senha.get() == '':
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()

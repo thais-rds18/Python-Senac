@@ -72,7 +72,7 @@ def telaCadastrarProfessores():
 
         def cadastrarProf(self):
             try:
-                if self.entrada_nome_professor.get() == '' and self.entrada_CPF.get() == '' and self.entrada_email.get() and self.entrada_fone.get() and self.entrada_conhecimento.get():
+                if self.entrada_nome_professor.get() == '' or self.entrada_CPF.get() == '' or self.entrada_email.get() or self.entrada_fone.get() or self.entrada_conhecimento.get():
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()
