@@ -54,7 +54,7 @@ class Inicio:
         # self.botao_cadastrar.bind('<Any-Button>') receberá a função para cadastrar futuramente
 
         self.botao_esqueci_senha = tk.Button(self.janela_login, text='Esqueci minha senha', font='Verdana 16',
-                                             fg='#004AAD', bg='#F5F5F5', relief=FLAT)
+                                             fg='#004AAD', bg='#F5F5F5', relief=FLAT, command=lambda : self.esqueciSenha())
         self.botao_esqueci_senha.place(relx=0.43, rely=0.83, relheight=0.05, relwidth=0.20)
         # self.label_esqueci_senha.bind('<Return>') receberá a função para cadastrar futuramente
         # self.botao_esqueci_senha.bind('<Any-Button>') receberá a função para cadastrar futuramente
@@ -62,7 +62,7 @@ class Inicio:
         self.label_inferior = tk.Label(self.janela_login, bg='#004AAD')
         self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
 
-    def botao_esqueci_senha(self):
+    def esqueciSenha(self):
         pass
 
     def telaInicial(self):
