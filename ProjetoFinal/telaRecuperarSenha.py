@@ -4,7 +4,7 @@ import tkinter as tk
 class Janela_Cadastrar_Usuario:
     def __init__(self, janela):
         self.janela_cadastrar_usuario = janela
-        self.janela_cadastrar_usuario.title('Cadastrar Usuário')  # Trocar o título da janela
+        self.janela_cadastrar_usuario.title('Recuperação de Senha')  # Trocar o título da janela
         # self.janela08.iconbitmap('icone.ico')  # Verificar se tem o ícone no seu arquivo
         self.janela_cadastrar_usuario.geometry('690x550+300+10')
         self.janela_cadastrar_usuario['bg'] = '#F5F5F5'
