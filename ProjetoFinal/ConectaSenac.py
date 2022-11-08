@@ -12,6 +12,7 @@ class Inicio:
     def __init__(self, janela, conexao):
         self.conexao = conexao
         self.janela_login = janela
+        self.pag = 1
         self.janela_login.title('Tela de Acesso')
         self.janela_login.iconbitmap('icone.ico')
         self.janela_login.geometry('1440x750+50+10')
@@ -215,6 +216,8 @@ def telaCadastrarUsuario():
 def telaSalas():
     class TelaSalas:
         def __init__(self, janela_salas_geral):
+            self.busca_componentes = None
+            self.pag = 1
             self.telaSalasGeral = janela_salas_geral
             self.telaSalasGeral.title('Salas')
             self.telaSalasGeral.iconbitmap('icone.ico')
@@ -385,16 +388,64 @@ def telaSalas():
             self.sinalDispNoiteSala3.place(relx=0.73, rely=0.736)
             self.dispNoiteSala3.place(relx=0.751, rely=0.73)
 
+            self.botaoProx = tk.Button(self.telaSalasGeral, text='>', command=lambda: self.exibir(salas, pag='>'))
+            self.botaoProx.place(relx=0.63, relwidth=0.05, rely=0.79, relheight=0.05)
+            self.botaoAnte = tk.Button(self.telaSalasGeral, text='<', command=lambda: self.exibir(salas, pag='<'))
+            self.botaoAnte.place(relx=0.58, relwidth=0.05, rely=0.79, relheight=0.05)
+
             sql = 'SELECT * FROM salas order by nome'
             salas = comandosSQL(sql)
             self.exibir(salas)
 
-        def exibir(self, salas):
+        def exibir(self, salas, pag=0):
+            if self.busca_componentes != None:
+                salas = self.busca_componentes
+            if pag == '>':
+                self.pag = self.pag +1
+            elif pag == '<':
+                self.pag = self.pag -1
+            else:
+                pass
+            pag = self.pag
+            # print(salas)
+            if pag < 1:
+                self.pag = 1
+                pag = 1
+            if pag != 1:
+                # Para limpar informações ao passar de tela
+                self.rotuloSala1.config(text='')
+                self.obsSala1.config(text='')
+                self.nroPCsSala1.config(text='')
+                self.nroCadeirasSala1.config(text='')
+                self.andarpoloSala1.config(text='')
+                self.dispManhaSala1.config(text='')
+                self.dispTardeSala1.config(text='')
+                self.dispNoiteSala1.config(text='')
+
+                self.rotuloSala2.config(text='')
+                self.obsSala2.config(text='')
+                self.nroPCsSala2.config(text='')
+                self.nroCadeirasSala2.config(text='')
+                self.andarpoloSala2.config(text='')
+                self.dispManhaSala2.config(text='')
+                self.dispTardeSala2.config(text='')
+                self.dispNoiteSala2.config(text='')
+
+                self.rotuloSala3.config(text='')
+                self.obsSala3.config(text='')
+                self.nroPCsSala3.config(text='')
+                self.nroCadeirasSala3.config(text='')
+                self.andarpoloSala3.config(text='')
+                self.dispManhaSala3.config(text='')
+                self.dispTardeSala3.config(text='')
+                self.dispNoiteSala3.config(text='')
+
             if len(salas) < 1:
                 pass
             else:
                 contadorsala = 0
-                for v in salas:
+                salastemp = salas[((3 * pag) - 3):(3 * pag)] # Isso pega os três resultados da pagina atual
+                for v in salastemp:
                     nnsala = v[0]
                     nnpolo = v[1]
                     nnandar = v[2]
@@ -520,6 +571,12 @@ def telaSalas():
             salas = comandosSQL(sql)
             print(comandosSQL(sql))
             self.limpar()
+            componentes = str(cadeiras)+str(mesas)+str(pcs)+str(projetor)+str(televisor)+str(quadro)+str(tela)+str(ar)+str(turno)
+            print(componentes, type(componentes))
+            if componentes == 0:
+                self.busca_componentes = None
+            else:
+                self.busca_componentes = salas
             self.exibir(salas)
 
         def horarioDisponivel(self, cod):
@@ -875,7 +932,7 @@ def telaCadastrarSalas():
 
         def cadastrar(self):
             try:
-                if self.entrada_nome_sala.get() == '' or self.entrada_cadeiras.get() == '' or self.entrada_computadores.get() == '' or self.entrada_televisores.get() == '' or self.entrada_Tela_retratil.get() == '' or self.entrada_polo.get() == '' or self.entrada_mesas.get() == '' or self.entrada_projetores.get() == '' or self.entrada_quadros.get() == '' or self.entrada_ar_condicionado.get() == '' or self.entrada_andar.get():
+                if self.entrada_nome_sala.get() == '' or self.entrada_cadeiras.get() == '' or self.entrada_computadores.get() == '' or self.entrada_televisores.get() == '' or self.entrada_Tela_retratil.get() == '' or self.entrada_polo.get() == '' or self.entrada_mesas.get() == '' or self.entrada_projetores.get() == '' or self.entrada_quadros.get() == '' or self.entrada_ar_condicionado.get() == '' or self.entrada_andar.get() == '':
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()
