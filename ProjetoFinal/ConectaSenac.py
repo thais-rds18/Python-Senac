@@ -48,20 +48,15 @@ class Inicio:
         self.botao_cadastrar = tk.Button(self.janela_login, text='CADASTRAR', font='Inter 17 bold', fg='white',
                                          bg='#004AAD', relief=GROOVE, command=lambda: telaCadastrarUsuario())
         self.botao_cadastrar.place(relx=0.58, rely=0.70, relheight=0.08, relwidth=0.15)
-        # self.botao_cadastrar.bind('<Return>') receberá a função para cadastrar futuramente
-        # self.botao_cadastrar.bind('<Any-Button>') receberá a função para cadastrar futuramente
 
         self.botao_esqueci_senha = tk.Button(self.janela_login, text='Esqueci minha senha', font='Verdana 16',
-                                             fg='#004AAD', bg='#F5F5F5', relief=FLAT, command=lambda : self.esqueciSenha())
+                                             fg='#004AAD', bg='#F5F5F5', relief=FLAT,
+                                             command=lambda: telaRecuperarSenha())
         self.botao_esqueci_senha.place(relx=0.43, rely=0.83, relheight=0.05, relwidth=0.20)
-        # self.label_esqueci_senha.bind('<Return>') receberá a função para cadastrar futuramente
-        # self.botao_esqueci_senha.bind('<Any-Button>') receberá a função para cadastrar futuramente
 
         self.label_inferior = tk.Label(self.janela_login, bg='#004AAD')
         self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
 
-    def esqueciSenha(self):
-        pass
 
     def telaInicial(self):
         self.janela_login.destroy()
@@ -195,8 +190,12 @@ def telaCadastrarUsuario():
 
         def cadastrarUsuario(self):
             try:
-                if self.entrada_usuario.get() or self.entrada_cpf.get() == '' or self.entrada_email.get() == '' or self.entrada_nascimento.get() == '' or self.entrada_senha.get() == '' or self.entrada_confirmar_senha.get() == '':
+                if self.entrada_usuario.get() == '' or self.entrada_cpf.get() == '' or self.entrada_email.get() == '' or self.entrada_nascimento.get() == '' or self.entrada_senha.get() == '' or self.entrada_confirmar_senha.get() == '':
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
+
+                elif self.entrada_senha.get() != self.entrada_confirmar_senha.get():
+                    messagebox.showerror('Atenção!', 'Senha e Confirmar senha nao conferem!')
+
                 else:
                     c = self.conexao.cursor()
                     sql = "INSERT INTO login (usuario, cpf, email, nascimento, senha, confirmar_senha) VALUES ( '" + self.entrada_usuario.get() + "', '" + self.entrada_cpf.get() + "','" + self.entrada_email.get() + "', '" + self.entrada_nascimento.get() + "', '" + self.entrada_senha.get() + "', '" + self.entrada_confirmar_senha.get() + "')"
@@ -401,9 +400,9 @@ def telaSalas():
             if self.busca_componentes != None:
                 salas = self.busca_componentes
             if pag == '>':
-                self.pag = self.pag +1
+                self.pag = self.pag + 1
             elif pag == '<':
-                self.pag = self.pag -1
+                self.pag = self.pag - 1
             else:
                 pass
             pag = self.pag
@@ -444,7 +443,7 @@ def telaSalas():
                 pass
             else:
                 contadorsala = 0
-                salastemp = salas[((3 * pag) - 3):(3 * pag)] # Isso pega os três resultados da pagina atual
+                salastemp = salas[((3 * pag) - 3):(3 * pag)]  # Isso pega os três resultados da pagina atual
                 for v in salastemp:
                     nnsala = v[0]
                     nnpolo = v[1]
@@ -571,7 +570,8 @@ def telaSalas():
             salas = comandosSQL(sql)
             print(comandosSQL(sql))
             self.limpar()
-            componentes = str(cadeiras)+str(mesas)+str(pcs)+str(projetor)+str(televisor)+str(quadro)+str(tela)+str(ar)+str(turno)
+            componentes = str(cadeiras) + str(mesas) + str(pcs) + str(projetor) + str(televisor) + str(quadro) + str(
+                tela) + str(ar) + str(turno)
             print(componentes, type(componentes))
             if componentes == 0:
                 self.busca_componentes = None
@@ -1175,6 +1175,50 @@ def telaCadastrarProfessores():
     objeto = TelaCadastroProfessores(janela_professores_cadastro, conexao)
     janela_professores_cadastro.mainloop()
     conexao.close()
+
+
+def telaRecuperarSenha():
+    class Janela_Recuperar_Senha:
+        def __init__(self, janela_recuperar):
+            self.janela_cadastrar_usuario = janela_recuperar
+            self.janela_cadastrar_usuario.title('Recuperação de Senha')  # Trocar o título da janela
+            self.janela_cadastrar_usuario.iconbitmap('icone.ico')  # Verificar se tem o ícone no seu arquivo
+            self.janela_cadastrar_usuario.geometry('690x550+300+10')
+            self.janela_cadastrar_usuario['bg'] = '#F5F5F5'
+            self.janela_cadastrar_usuario.resizable(width=False, height=False)
+
+            self.label_superior = tk.Label(self.janela_cadastrar_usuario, bg='#004AAD')
+            self.label_superior.place(relx=0, relwidth=1, relheight=0.08, rely=0)
+
+            self.senac_logo = tk.PhotoImage(file='logo_simbolo.png')
+            self.label_senac_logo = tk.Label(self.janela_cadastrar_usuario, image=self.senac_logo, bg='#F5F5F5')
+            self.label_senac_logo.place(relx=0.02, rely=0.09)
+
+            self.label_Cadastro_usuario = tk.Label(self.janela_cadastrar_usuario, text='Recuperar Senha', bg='#F5F5F5',
+                                                   font='Inter 24 bold')
+            self.label_Cadastro_usuario.place(relx=0.18, relwidth=0.40, rely=0.08, relheight=0.15)
+
+            self.label_nome = tk.Label(self.janela_cadastrar_usuario, text='CPF:', font='Inter 17 bold', bg='#F5F5F5')
+            self.label_nome.place(relx=0.15, relwidth=0.10, rely=0.35, relheight=0.05)
+            self.entrada_nome = tk.Entry(self.janela_cadastrar_usuario, font='Inter 17', bg='#D9D9D9')
+            self.entrada_nome.place(relx=0.28, relwidth=0.50, rely=0.35, relheight=0.05)
+
+            self.label_email = tk.Label(self.janela_cadastrar_usuario, text='E-mail:', font='Inter 17 bold',
+                                        bg='#F5F5F5')
+            self.label_email.place(relx=0.15, relwidth=0.12, rely=0.45, relheight=0.05)
+            self.entrada_email = tk.Entry(self.janela_cadastrar_usuario, font='Inter 17', bg='#D9D9D9')
+            self.entrada_email.place(relx=0.28, relwidth=0.50, rely=0.45, relheight=0.05)
+
+            self.botao_cadastrar = tk.Button(self.janela_cadastrar_usuario, text='Enviar', font='Inter 17 bold',
+                                             fg='white', bg='#004AAD')
+            self.botao_cadastrar.place(relx=0.43, relwidth=0.20, rely=0.60, relheight=0.10)
+
+            self.label_inferior = tk.Label(self.janela_cadastrar_usuario, bg='#004AAD')
+            self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
+
+    janela_recuperar = tk.Toplevel()
+    objetoJanelaRecuperar = Janela_Recuperar_Senha(janela_recuperar)
+    janela_recuperar.mainloop()
 
 
 janela = tk.Tk()

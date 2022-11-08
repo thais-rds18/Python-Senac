@@ -8,6 +8,7 @@ from tkcalendar import DateEntry
 from ProjetoFinal.telaCadastrarCurso import telaCadastrarCurso
 from ProjetoFinal.telaCadastrarUsuario import telaCadastrarUsuario
 from ProjetoFinal.telaProfessoresGeral import telaProfessores
+from ProjetoFinal.telaRecuperarSenha import telaRecuperarSenha
 from ProjetoFinal.telaSalasGeral import telaSalas
 
 
@@ -50,20 +51,14 @@ class Inicio:
         self.botao_cadastrar = tk.Button(self.janela_login, text='CADASTRAR', font='Inter 17 bold', fg='white',
                                          bg='#004AAD', relief=GROOVE, command=lambda: telaCadastrarUsuario())
         self.botao_cadastrar.place(relx=0.58, rely=0.70, relheight=0.08, relwidth=0.15)
-        # self.botao_cadastrar.bind('<Return>') receberá a função para cadastrar futuramente
-        # self.botao_cadastrar.bind('<Any-Button>') receberá a função para cadastrar futuramente
 
         self.botao_esqueci_senha = tk.Button(self.janela_login, text='Esqueci minha senha', font='Verdana 16',
-                                             fg='#004AAD', bg='#F5F5F5', relief=FLAT, command=lambda : self.esqueciSenha())
+                                             fg='#004AAD', bg='#F5F5F5', relief=FLAT, command=lambda : telaRecuperarSenha())
         self.botao_esqueci_senha.place(relx=0.43, rely=0.83, relheight=0.05, relwidth=0.20)
-        # self.label_esqueci_senha.bind('<Return>') receberá a função para cadastrar futuramente
-        # self.botao_esqueci_senha.bind('<Any-Button>') receberá a função para cadastrar futuramente
 
         self.label_inferior = tk.Label(self.janela_login, bg='#004AAD')
         self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
 
-    def esqueciSenha(self):
-        pass
 
     def telaInicial(self):
         self.janela_login.destroy()

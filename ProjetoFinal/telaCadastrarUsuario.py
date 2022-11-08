@@ -74,8 +74,12 @@ def telaCadastrarUsuario():
 
         def cadastrarUsuario(self):
             try:
-                if self.entrada_usuario.get() or self.entrada_cpf.get() == '' or self.entrada_email.get() == '' or self.entrada_nascimento.get() == '' or self.entrada_senha.get() == '' or self.entrada_confirmar_senha.get() == '':
+                if self.entrada_usuario.get()=='' or self.entrada_cpf.get() == '' or self.entrada_email.get() == '' or self.entrada_nascimento.get() == '' or self.entrada_senha.get() == '' or self.entrada_confirmar_senha.get() == '':
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
+
+                elif self.entrada_senha.get() != self.entrada_confirmar_senha.get():
+                    messagebox.showerror('Atenção!', 'Senha e Confirmar senha nao conferem!')
+
                 else:
                     c = self.conexao.cursor()
                     sql = "INSERT INTO login (usuario, cpf, email, nascimento, senha, confirmar_senha) VALUES ( '" + self.entrada_usuario.get() + "', '" + self.entrada_cpf.get() + "','" + self.entrada_email.get() + "', '" + self.entrada_nascimento.get() + "', '" + self.entrada_senha.get() + "', '" + self.entrada_confirmar_senha.get() + "')"
@@ -100,5 +104,4 @@ def telaCadastrarUsuario():
     objetoUsuario = Janela_Cadastrar_Usuario(janela_usuario_cadastro, conexao)
     janela_usuario_cadastro.mainloop()
     conexao.close()
-
 
