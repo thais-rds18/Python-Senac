@@ -45,8 +45,6 @@ class Inicio:
         self.botao_entrar = tk.Button(self.janela_login, text='ENTRAR', font='Inter 17 bold', fg='white', bg='#DE8708',
                                       relief=GROOVE, command=lambda: self.login_inicial())
         self.botao_entrar.place(relx=0.36, rely=0.70, relheight=0.08, relwidth=0.10)
-        # self.botao_entrar.bind('<Return>', self.enter_confirmar)
-        # self.botao_entrar.bind('<Any-Button>', self.clique_confirmar)
 
         self.botao_cadastrar = tk.Button(self.janela_login, text='CADASTRAR', font='Inter 17 bold', fg='white',
                                          bg='#004AAD', relief=GROOVE, command=lambda: telaCadastrarUsuario())

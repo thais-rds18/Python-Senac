@@ -5,11 +5,14 @@ import sqlite3
 from sqlite3 import Error
 
 from ProjetoFinal.telaCadastrarSala import telaCadastrarSalas
+from ProjetoFinal.telaSala import telaSala
 
 
 def telaSalas():
     class TelaSalas:
         def __init__(self, janela_salas_geral):
+            self.busca_componentes = None
+            self.pag = 1
             self.telaSalasGeral = janela_salas_geral
             self.telaSalasGeral.title('Salas')
             self.telaSalasGeral.iconbitmap('icone.ico')
@@ -101,10 +104,16 @@ def telaSalas():
             self.rotuloSala1.place(relx=0.35, rely=0.30)
             self.obsSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.obsSala1.place(relx=0.35, rely=0.35)
+            self.iconePcs1 = tk.PhotoImage(file=r'..\ProjetoFinal\computador.png')
+            self.label_iconePcs1 = tk.Label(self.telaSalasGeral, image=self.iconePcs1)
+            self.label_iconePcs1.place(relx=0.35, rely=0.39)
             self.nroPCsSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroPCsSala1.place(relx=0.35, rely=0.39)
+            self.nroPCsSala1.place(relx=0.38, rely=0.39)
+            self.iconePessoas1 = tk.PhotoImage(file=r'..\ProjetoFinal\pessoas2.png')
+            self.label_iconePessoas1 = tk.Label(self.telaSalasGeral, image=self.iconePessoas1)
+            self.label_iconePessoas1.place(relx=0.45, rely=0.39)
             self.nroCadeirasSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroCadeirasSala1.place(relx=0.40, rely=0.39)
+            self.nroCadeirasSala1.place(relx=0.47, rely=0.39)
             self.andarpoloSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala1.place(relx=0.45, rely=0.305)
 
@@ -130,10 +139,16 @@ def telaSalas():
             self.rotuloSala2.place(relx=0.35, rely=0.47)
             self.obsSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.obsSala2.place(relx=0.35, rely=0.52)
+            self.iconePcs2 = tk.PhotoImage(file=r'..\ProjetoFinal\computador.png')
+            self.label_iconePcs2 = tk.Label(self.telaSalasGeral, image=self.iconePcs2)
+            self.label_iconePcs2.place(relx=0.35, rely=0.56)
             self.nroPCsSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroPCsSala2.place(relx=0.35, rely=0.56)
+            self.nroPCsSala2.place(relx=0.38, rely=0.56)
+            self.iconePessoas2 = tk.PhotoImage(file=r'..\ProjetoFinal\pessoas2.png')
+            self.label_iconePessoas2 = tk.Label(self.telaSalasGeral, image=self.iconePessoas2)
+            self.label_iconePessoas2.place(relx=0.45, rely=0.56)
             self.nroCadeirasSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroCadeirasSala2.place(relx=0.40, rely=0.56)
+            self.nroCadeirasSala2.place(relx=0.47, rely=0.56)
             self.andarpoloSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala2.place(relx=0.45, rely=0.475)
 
@@ -159,10 +174,16 @@ def telaSalas():
             self.rotuloSala3.place(relx=0.35, rely=0.64)
             self.obsSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.obsSala3.place(relx=0.35, rely=0.69)
+            self.iconePcs3 = tk.PhotoImage(file=r'..\ProjetoFinal\computador.png')
+            self.label_iconePcs3 = tk.Label(self.telaSalasGeral, image=self.iconePcs3)
+            self.label_iconePcs3.place(relx=0.35, rely=0.73)
             self.nroPCsSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroPCsSala3.place(relx=0.35, rely=0.73)
+            self.nroPCsSala3.place(relx=0.38, rely=0.73)
+            self.iconePessoas3 = tk.PhotoImage(file=r'..\ProjetoFinal\pessoas2.png')
+            self.label_iconePessoas3 = tk.Label(self.telaSalasGeral, image=self.iconePessoas3)
+            self.label_iconePessoas3.place(relx=0.45, rely=0.73)
             self.nroCadeirasSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroCadeirasSala3.place(relx=0.40, rely=0.73)
+            self.nroCadeirasSala3.place(relx=0.47, rely=0.73)
             self.andarpoloSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala3.place(relx=0.45, rely=0.645)
 
@@ -179,16 +200,38 @@ def telaSalas():
             self.sinalDispNoiteSala3.place(relx=0.73, rely=0.736)
             self.dispNoiteSala3.place(relx=0.751, rely=0.73)
 
+            self.botaoProx = tk.Button(self.telaSalasGeral, text='>', command=lambda: self.exibir(salas, pag='>'))
+            self.botaoProx.place(relx=0.63, relwidth=0.05, rely=0.79, relheight=0.05)
+            self.botaoAnte = tk.Button(self.telaSalasGeral, text='<', command=lambda: self.exibir(salas, pag='<'))
+            self.botaoAnte.place(relx=0.58, relwidth=0.05, rely=0.79, relheight=0.05)
+
             sql = 'SELECT * FROM salas order by nome'
             salas = comandosSQL(sql)
             self.exibir(salas)
 
-        def exibir(self, salas):
+        def exibir(self, salas, pag = 0):
+
+            if self.busca_componentes != None:
+                salas = self.busca_componentes
+            if pag == '>':
+                self.pag = self.pag + 1
+            elif pag == '<':
+                self.pag = self.pag - 1
+            else:
+                pass
+            pag = self.pag
+            # print(salas)
+            if pag < 1:
+                self.pag = 1
+                pag = 1
+            if pag != 1:
+                self.limpar()
             if len(salas) < 1:
                 pass
             else:
                 contadorsala = 0
-                for v in salas:
+                salastemp = salas[((3 * pag) - 3):(3 * pag)]  # Isso pega os três resultados da pagina atual
+                for v in salastemp:
                     nnsala = v[0]
                     nnpolo = v[1]
                     nnandar = v[2]
@@ -196,7 +239,6 @@ def telaSalas():
                     nncomputador = v[4]
                     nntelevisor = v[5]
                     nntelaretratil = v[6]
-                    nnmesa = v[7]
                     nnprojetor = v[8]
                     nnquadro = v[9]
                     nnarcondicionado = v[10]
@@ -213,6 +255,26 @@ def telaSalas():
                         self.dispManhaSala1.config(text='Manhã')
                         self.dispTardeSala1.config(text='Tarde')
                         self.dispNoiteSala1.config(text='Noite')
+
+                        self.nnsala1 = nnsala
+                        self.nnpolo1 = nnpolo
+                        self.nnandar1 = nnandar
+                        self.nncadeira1 = nncadeira
+                        self.nncomputador1 = nncomputador
+                        self.nntelevisor1 = nntelevisor
+                        self.nntelaretratil1 = nntelaretratil
+                        self.nnprojetor1 = nnprojetor
+                        self.nnquadro1 = nnquadro
+                        self.nnarcondicionado1 = nnarcondicionado
+                        self.nnmanha1 = nnmanha
+                        self.nntarde1 = nntarde
+                        self.nnnoite1 = nnnoite
+
+                        self.botaoSala1.configure(
+                            command=lambda: telaSala(self.nnsala1, self.nnpolo1, self.nnandar1, self.nncadeira1,
+                                                     self.nncomputador1, self.nntelevisor1, self.nntelaretratil1,
+                                                     self.nnprojetor1, self.nnquadro1, self.nnarcondicionado1,
+                                                     self.nnmanha1, self.nntarde1, self.nnnoite1))
                         self.botaoSala1.place(relx=0.321, relwidth=0.649, rely=0.291, relheight=0.148)
 
                         if nnmanha == 1:
@@ -238,7 +300,28 @@ def telaSalas():
                         self.dispManhaSala2.config(text='Manhã')
                         self.dispTardeSala2.config(text='Tarde')
                         self.dispNoiteSala2.config(text='Noite')
+
+                        self.nnsala2 = nnsala
+                        self.nnpolo2 = nnpolo
+                        self.nnandar2 = nnandar
+                        self.nncadeira2 = nncadeira
+                        self.nncomputador2 = nncomputador
+                        self.nntelevisor2 = nntelevisor
+                        self.nntelaretratil2 = nntelaretratil
+                        self.nnprojetor2 = nnprojetor
+                        self.nnquadro2 = nnquadro
+                        self.nnarcondicionado2 = nnarcondicionado
+                        self.nnmanha2 = nnmanha
+                        self.nntarde2 = nntarde
+                        self.nnnoite2 = nnnoite
+
+                        self.botaoSala2.configure(
+                            command=lambda: telaSala(self.nnsala2, self.nnpolo2, self.nnandar2, self.nncadeira2,
+                                                     self.nncomputador2, self.nntelevisor2, self.nntelaretratil2,
+                                                     self.nnprojetor2, self.nnquadro2, self.nnarcondicionado2,
+                                                     self.nnmanha2, self.nntarde2, self.nnnoite2))
                         self.botaoSala2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
+
 
                         if nnmanha == 1:
                             self.sinalDispManhaSala2.config(bg='red')
@@ -262,7 +345,28 @@ def telaSalas():
                         self.dispManhaSala3.config(text='Manhã')
                         self.dispTardeSala3.config(text='Tarde')
                         self.dispNoiteSala3.config(text='Noite')
+
+                        self.nnsala3 = nnsala
+                        self.nnpolo3 = nnpolo
+                        self.nnandar3 = nnandar
+                        self.nncadeira3 = nncadeira
+                        self.nncomputador3 = nncomputador
+                        self.nntelevisor3 = nntelevisor
+                        self.nntelaretratil3 = nntelaretratil
+                        self.nnprojetor3 = nnprojetor
+                        self.nnquadro3 = nnquadro
+                        self.nnarcondicionado3 = nnarcondicionado
+                        self.nnmanha3 = nnmanha
+                        self.nntarde3 = nntarde
+                        self.nnnoite3 = nnnoite
+
+                        self.botaoSala3.configure(
+                            command=lambda: telaSala(self.nnsala3, self.nnpolo3, self.nnandar3, self.nncadeira3,
+                                                     self.nncomputador3, self.nntelevisor3, self.nntelaretratil3,
+                                                     self.nnprojetor3, self.nnquadro3, self.nnarcondicionado3,
+                                                     self.nnmanha3, self.nntarde3, self.nnnoite3))
                         self.botaoSala3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
+
 
                         if nnmanha == 1:
                             self.sinalDispManhaSala3.config(bg='red')
@@ -314,6 +418,13 @@ def telaSalas():
             salas = comandosSQL(sql)
             print(comandosSQL(sql))
             self.limpar()
+            componentes = str(cadeiras) + str(mesas) + str(pcs) + str(projetor) + str(televisor) + str(quadro) + str(
+                tela) + str(ar) + str(turno)
+            print(componentes, type(componentes))
+            if componentes == 0:
+                self.busca_componentes = None
+            else:
+                self.busca_componentes = salas
             self.exibir(salas)
 
         def horarioDisponivel(self, cod):
@@ -383,3 +494,5 @@ def telaSalas():
     objetoSalasGeral = TelaSalas(janela_salas_geral)
     janela_salas_geral.mainloop()
     conexao.close()
+
+telaSalas()

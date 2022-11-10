@@ -112,7 +112,7 @@ def telaCadastrarSalas():
 
         def cadastrar(self):
             try:
-                if self.entrada_nome_sala.get()== '' or self.entrada_cadeiras.get() == '' or self.entrada_computadores.get() == '' or self.entrada_televisores.get() == '' or self.entrada_Tela_retratil.get() == '' or self.entrada_polo.get() == '' or self.entrada_mesas.get() == '' or self.entrada_projetores.get() == '' or self.entrada_quadros.get() == '' or self.entrada_ar_condicionado.get() == '' or self.entrada_andar.get():
+                if self.entrada_nome_sala.get() == '' or self.entrada_cadeiras.get() == '' or self.entrada_computadores.get() == '' or self.entrada_televisores.get() == '' or self.entrada_Tela_retratil.get() == '' or self.entrada_polo.get() == '' or self.entrada_mesas.get() == '' or self.entrada_projetores.get() == '' or self.entrada_quadros.get() == '' or self.entrada_ar_condicionado.get() == '' or self.entrada_andar.get() == '':
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()

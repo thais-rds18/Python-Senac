@@ -42,15 +42,13 @@ class Inicio:
         self.botao_entrar = tk.Button(self.janela_login, text='ENTRAR', font='Inter 17 bold', fg='white', bg='#DE8708',
                                       relief=GROOVE, command=lambda: self.login_inicial())
         self.botao_entrar.place(relx=0.36, rely=0.70, relheight=0.08, relwidth=0.10)
-        # self.botao_entrar.bind('<Return>', self.enter_confirmar)
-        # self.botao_entrar.bind('<Any-Button>', self.clique_confirmar)
 
         self.botao_cadastrar = tk.Button(self.janela_login, text='CADASTRAR', font='Inter 17 bold', fg='white',
                                          bg='#004AAD', relief=GROOVE, command=lambda: telaCadastrarUsuario())
         self.botao_cadastrar.place(relx=0.58, rely=0.70, relheight=0.08, relwidth=0.15)
 
         self.botao_esqueci_senha = tk.Button(self.janela_login, text='Esqueci minha senha', font='Verdana 16',
-                                             fg='#004AAD', bg='#F5F5F5', relief=FLAT, command=lambda : telaRecuperarSenha())
+                                             fg='#004AAD', bg='#F5F5F5', relief=FLAT, command=lambda: self.telaRecuperarSenha())
         self.botao_esqueci_senha.place(relx=0.43, rely=0.83, relheight=0.05, relwidth=0.20)
 
         self.label_inferior = tk.Label(self.janela_login, bg='#004AAD')
@@ -97,7 +95,7 @@ class Inicio:
 
         self.inicial.mainloop()
 
-    def tela_senha(self):
+    def telaRecuperarSenha(self):
         class Janela_Recuperar_Senha:
             def __init__(self, janela):
                 self.janela_recuperar_senha = janela
@@ -144,7 +142,7 @@ class Inicio:
                 print(cpf, email)
                 # sql = f'SELECT * FROM salas WHERE cpf={cpf}
 
-        janela = Tk()
+        janela = tk.Toplevel()
         objetoJanela = Janela_Recuperar_Senha(janela)
         janela.mainloop()
 
@@ -287,8 +285,7 @@ def telaSalas():
             self.titulo.place(relx=0.115, rely=0.095)
 
             self.botaoCadastro = tk.Button(self.telaSalasGeral, bg='#F59714', text='Cadastrar nova sala', relief='flat',
-                                           font='Inter 16 bold', fg='#F5F5F5', height=1, width=20,
-                                           command=lambda: telaCadastrarSalas())
+                                           font='Inter 16 bold', fg='#F5F5F5', height=1, width=20, command= lambda: telaCadastrarSalas())
             self.botaoCadastro.place(relx=0.75, relwidth=0.22, rely=0.15)
 
             self.filtro = tk.PhotoImage(file=r'..\ProjetoFinal\filtro.png')
@@ -359,10 +356,16 @@ def telaSalas():
             self.rotuloSala1.place(relx=0.35, rely=0.30)
             self.obsSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.obsSala1.place(relx=0.35, rely=0.35)
+            self.iconePcs1 = tk.PhotoImage(file=r'..\ProjetoFinal\computador.png')
+            self.label_iconePcs1 = tk.Label(self.telaSalasGeral, image=self.iconePcs1)
+            self.label_iconePcs1.place(relx=0.35, rely=0.39)
             self.nroPCsSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroPCsSala1.place(relx=0.35, rely=0.39)
+            self.nroPCsSala1.place(relx=0.38, rely=0.39)
+            self.iconePessoas1 = tk.PhotoImage(file=r'..\ProjetoFinal\pessoas2.png')
+            self.label_iconePessoas1 = tk.Label(self.telaSalasGeral, image=self.iconePessoas1)
+            self.label_iconePessoas1.place(relx=0.45, rely=0.39)
             self.nroCadeirasSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroCadeirasSala1.place(relx=0.40, rely=0.39)
+            self.nroCadeirasSala1.place(relx=0.47, rely=0.39)
             self.andarpoloSala1 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala1.place(relx=0.45, rely=0.305)
 
@@ -388,10 +391,16 @@ def telaSalas():
             self.rotuloSala2.place(relx=0.35, rely=0.47)
             self.obsSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.obsSala2.place(relx=0.35, rely=0.52)
+            self.iconePcs2 = tk.PhotoImage(file=r'..\ProjetoFinal\computador.png')
+            self.label_iconePcs2 = tk.Label(self.telaSalasGeral, image=self.iconePcs2)
+            self.label_iconePcs2.place(relx=0.35, rely=0.56)
             self.nroPCsSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroPCsSala2.place(relx=0.35, rely=0.56)
+            self.nroPCsSala2.place(relx=0.38, rely=0.56)
+            self.iconePessoas2 = tk.PhotoImage(file=r'..\ProjetoFinal\pessoas2.png')
+            self.label_iconePessoas2 = tk.Label(self.telaSalasGeral, image=self.iconePessoas2)
+            self.label_iconePessoas2.place(relx=0.45, rely=0.56)
             self.nroCadeirasSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroCadeirasSala2.place(relx=0.40, rely=0.56)
+            self.nroCadeirasSala2.place(relx=0.47, rely=0.56)
             self.andarpoloSala2 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala2.place(relx=0.45, rely=0.475)
 
@@ -417,10 +426,16 @@ def telaSalas():
             self.rotuloSala3.place(relx=0.35, rely=0.64)
             self.obsSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
             self.obsSala3.place(relx=0.35, rely=0.69)
+            self.iconePcs3 = tk.PhotoImage(file=r'..\ProjetoFinal\computador.png')
+            self.label_iconePcs3 = tk.Label(self.telaSalasGeral, image=self.iconePcs3)
+            self.label_iconePcs3.place(relx=0.35, rely=0.73)
             self.nroPCsSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroPCsSala3.place(relx=0.35, rely=0.73)
+            self.nroPCsSala3.place(relx=0.38, rely=0.73)
+            self.iconePessoas3 = tk.PhotoImage(file=r'..\ProjetoFinal\pessoas2.png')
+            self.label_iconePessoas3 = tk.Label(self.telaSalasGeral, image=self.iconePessoas3)
+            self.label_iconePessoas3.place(relx=0.45, rely=0.73)
             self.nroCadeirasSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 15')
-            self.nroCadeirasSala3.place(relx=0.40, rely=0.73)
+            self.nroCadeirasSala3.place(relx=0.47, rely=0.73)
             self.andarpoloSala3 = tk.Label(self.telaSalasGeral, text='', font='Inter 16')
             self.andarpoloSala3.place(relx=0.45, rely=0.645)
 
@@ -446,7 +461,8 @@ def telaSalas():
             salas = comandosSQL(sql)
             self.exibir(salas)
 
-        def exibir(self, salas, pag=0):
+        def exibir(self, salas, pag = 0):
+
             if self.busca_componentes != None:
                 salas = self.busca_componentes
             if pag == '>':
@@ -461,37 +477,7 @@ def telaSalas():
                 self.pag = 1
                 pag = 1
             if pag != 1:
-                # Para limpar informações ao passar de tela
-
-                # self.rotuloSala1.config(text='')
-                # self.obsSala1.config(text='')
-                # self.nroPCsSala1.config(text='')
-                # self.nroCadeirasSala1.config(text='')
-                # self.andarpoloSala1.config(text='')
-                # self.dispManhaSala1.config(text='')
-                # self.dispTardeSala1.config(text='')
-                # self.dispNoiteSala1.config(text='')
-                #
-                # self.rotuloSala2.config(text='')
-                # self.obsSala2.config(text='')
-                # self.nroPCsSala2.config(text='')
-                # self.nroCadeirasSala2.config(text='')
-                # self.andarpoloSala2.config(text='')
-                # self.dispManhaSala2.config(text='')
-                # self.dispTardeSala2.config(text='')
-                # self.dispNoiteSala2.config(text='')
-                #
-                # self.rotuloSala3.config(text='')
-                # self.obsSala3.config(text='')
-                # self.nroPCsSala3.config(text='')
-                # self.nroCadeirasSala3.config(text='')
-                # self.andarpoloSala3.config(text='')
-                # self.dispManhaSala3.config(text='')
-                # self.dispTardeSala3.config(text='')
-                # self.dispNoiteSala3.config(text='')
-
                 self.limpar()
-
             if len(salas) < 1:
                 pass
             else:
@@ -505,7 +491,6 @@ def telaSalas():
                     nncomputador = v[4]
                     nntelevisor = v[5]
                     nntelaretratil = v[6]
-                    nnmesa = v[7]
                     nnprojetor = v[8]
                     nnquadro = v[9]
                     nnarcondicionado = v[10]
@@ -522,6 +507,26 @@ def telaSalas():
                         self.dispManhaSala1.config(text='Manhã')
                         self.dispTardeSala1.config(text='Tarde')
                         self.dispNoiteSala1.config(text='Noite')
+
+                        self.nnsala1 = nnsala
+                        self.nnpolo1 = nnpolo
+                        self.nnandar1 = nnandar
+                        self.nncadeira1 = nncadeira
+                        self.nncomputador1 = nncomputador
+                        self.nntelevisor1 = nntelevisor
+                        self.nntelaretratil1 = nntelaretratil
+                        self.nnprojetor1 = nnprojetor
+                        self.nnquadro1 = nnquadro
+                        self.nnarcondicionado1 = nnarcondicionado
+                        self.nnmanha1 = nnmanha
+                        self.nntarde1 = nntarde
+                        self.nnnoite1 = nnnoite
+
+                        self.botaoSala1.configure(
+                            command=lambda: telaSala(self.nnsala1, self.nnpolo1, self.nnandar1, self.nncadeira1,
+                                                     self.nncomputador1, self.nntelevisor1, self.nntelaretratil1,
+                                                     self.nnprojetor1, self.nnquadro1, self.nnarcondicionado1,
+                                                     self.nnmanha1, self.nntarde1, self.nnnoite1))
                         self.botaoSala1.place(relx=0.321, relwidth=0.649, rely=0.291, relheight=0.148)
 
                         if nnmanha == 1:
@@ -547,7 +552,28 @@ def telaSalas():
                         self.dispManhaSala2.config(text='Manhã')
                         self.dispTardeSala2.config(text='Tarde')
                         self.dispNoiteSala2.config(text='Noite')
+
+                        self.nnsala2 = nnsala
+                        self.nnpolo2 = nnpolo
+                        self.nnandar2 = nnandar
+                        self.nncadeira2 = nncadeira
+                        self.nncomputador2 = nncomputador
+                        self.nntelevisor2 = nntelevisor
+                        self.nntelaretratil2 = nntelaretratil
+                        self.nnprojetor2 = nnprojetor
+                        self.nnquadro2 = nnquadro
+                        self.nnarcondicionado2 = nnarcondicionado
+                        self.nnmanha2 = nnmanha
+                        self.nntarde2 = nntarde
+                        self.nnnoite2 = nnnoite
+
+                        self.botaoSala2.configure(
+                            command=lambda: telaSala(self.nnsala2, self.nnpolo2, self.nnandar2, self.nncadeira2,
+                                                     self.nncomputador2, self.nntelevisor2, self.nntelaretratil2,
+                                                     self.nnprojetor2, self.nnquadro2, self.nnarcondicionado2,
+                                                     self.nnmanha2, self.nntarde2, self.nnnoite2))
                         self.botaoSala2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
+
 
                         if nnmanha == 1:
                             self.sinalDispManhaSala2.config(bg='red')
@@ -571,7 +597,28 @@ def telaSalas():
                         self.dispManhaSala3.config(text='Manhã')
                         self.dispTardeSala3.config(text='Tarde')
                         self.dispNoiteSala3.config(text='Noite')
+
+                        self.nnsala3 = nnsala
+                        self.nnpolo3 = nnpolo
+                        self.nnandar3 = nnandar
+                        self.nncadeira3 = nncadeira
+                        self.nncomputador3 = nncomputador
+                        self.nntelevisor3 = nntelevisor
+                        self.nntelaretratil3 = nntelaretratil
+                        self.nnprojetor3 = nnprojetor
+                        self.nnquadro3 = nnquadro
+                        self.nnarcondicionado3 = nnarcondicionado
+                        self.nnmanha3 = nnmanha
+                        self.nntarde3 = nntarde
+                        self.nnnoite3 = nnnoite
+
+                        self.botaoSala3.configure(
+                            command=lambda: telaSala(self.nnsala3, self.nnpolo3, self.nnandar3, self.nncadeira3,
+                                                     self.nncomputador3, self.nntelevisor3, self.nntelaretratil3,
+                                                     self.nnprojetor3, self.nnquadro3, self.nnarcondicionado3,
+                                                     self.nnmanha3, self.nntarde3, self.nnnoite3))
                         self.botaoSala3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
+
 
                         if nnmanha == 1:
                             self.sinalDispManhaSala3.config(bg='red')
@@ -678,16 +725,6 @@ def telaSalas():
             self.sinalDispTardeSala3.config(bg='#F5F5F5')
             self.sinalDispNoiteSala3.config(bg='#F5F5F5')
 
-    def conexaoBanco():
-        caminho = 'Modelo Banco de dados\\bancoDedados.db'
-        conexao = None
-
-        try:
-            conexao = sqlite3.connect(caminho)
-            print('Conexao aceita')
-        except Error as ex:
-            print('Erro de conexão:', ex)
-        return conexao
 
     def comandosSQL(sql):
         c = conexao.cursor()
@@ -1230,49 +1267,142 @@ def telaCadastrarProfessores():
     conexao.close()
 
 
-def telaRecuperarSenha():
-    class Janela_Recuperar_Senha:
-        def __init__(self, janela_recuperar):
-            self.janela_recuperar_senha = janela_recuperar
-            self.janela_recuperar_senha.title('Recuperação de Senha')  # Trocar o título da janela
-            self.janela_recuperar_senha.iconbitmap('icone.ico')  # Verificar se tem o ícone no seu arquivo
-            self.janela_recuperar_senha.geometry('690x550+300+10')
-            self.janela_recuperar_senha['bg'] = '#F5F5F5'
-            self.janela_recuperar_senha.resizable(width=False, height=False)
+def telaSala(nnsala, nnpolo, nnandar, nncadeira,nncomputador, nntelevisor, nntelaretratil, nnprojetor, nnquadro, nnarcondicionado, nnmanha, nntarde, nnnoite):
+        class TelaSala:
+            def __init__(self, sala_individual):
+                self.sala_individual = sala_individual
+                self.sala_individual.title('Sala Individual')
+                self.sala_individual.iconbitmap('icone.ico')
+                self.sala_individual.geometry('1440x750+50+10')
+                self.sala_individual['bg'] = '#F5F5F5'
+                self.sala_individual.resizable(False, False)
 
-            self.label_superior = tk.Label(self.janela_recuperar_senha, bg='#004AAD')
-            self.label_superior.place(relx=0, relwidth=1, relheight=0.08, rely=0)
+                self.label_superior = tk.Label(self.sala_individual, bg='#004AAD', height=95)
+                self.label_superior.place(relx=0, relwidth=1, rely=0, relheight=0.08)
 
-            self.senac_logo = tk.PhotoImage(file='logo_simbolo.png')
-            self.label_senac_logo = tk.Label(self.janela_recuperar_senha, image=self.senac_logo, bg='#F5F5F5')
-            self.label_senac_logo.place(relx=0.02, rely=0.09)
+                self.senac_logo = tk.PhotoImage(file=r'..\ProjetoFinal\logo_simbolo.png')
+                self.label_senac_logo = tk.Label(self.sala_individual, image=self.senac_logo, bg='#F5F5F5')
+                self.label_senac_logo.place(relx=0.1, rely=0.11)
+                self.label_titulo_salas = tk.Label(self.sala_individual, text='Salas', font='Inter 28 bold',
+                                                   bg='#F5F5F5')
+                self.label_titulo_salas.place(relx=0.19, rely=0.13)
 
-            self.label_Recuperar_senha = tk.Label(self.janela_recuperar_senha, text='Recuperar Senha', bg='#F5F5F5',
-                                                   font='Inter 24 bold')
-            self.label_Recuperar_senha.place(relx=0.18, relwidth=0.40, rely=0.08, relheight=0.15)
+                self.botao_voltar_sala_indiviual = tk.Button(self.sala_individual, text='Voltar',
+                                                             font='Inter 17 bold', fg='white', bg='#004AAD',
+                                                             relief=FLAT,
+                                                             command=lambda: self.sala_individual.destroy())
+                self.botao_voltar_sala_indiviual.place(relx=0.8, relwidth=0.1, rely=0.15)
 
-            self.label_cpf = tk.Label(self.janela_recuperar_senha, text='CPF:', font='Inter 17 bold', bg='#F5F5F5')
-            self.label_cpf.place(relx=0.15, relwidth=0.10, rely=0.35, relheight=0.05)
-            self.entrada_cpf = tk.Entry(self.janela_recuperar_senha, font='Inter 17', bg='#D9D9D9')
-            self.entrada_cpf.place(relx=0.28, relwidth=0.50, rely=0.35, relheight=0.05)
+                self.label_titulo_sala = tk.Label(self.sala_individual, text=nnsala, font='Inter 24 bold', bg='#F5F5F5')
+                self.label_titulo_sala.place(relx=0.1, rely=0.25)
+                self.andarpoloSala = tk.Label(self.sala_individual, text=f'{nnandar}, {nnpolo}', font='Inter 22',
+                                              bg='#F5F5F5')
+                self.andarpoloSala.place(relx=0.18, rely=0.25)
 
-            self.label_email = tk.Label(self.janela_recuperar_senha, text='E-mail:', font='Inter 17 bold',
+                self.iconePessoas = tk.PhotoImage(file=r'..\ProjetoFinal\pessoas.png')
+                self.label_iconePessoas = tk.Label(self.sala_individual, image=self.iconePessoas, bg='#F5F5F5')
+                self.label_iconePessoas.place(relx=0.11, rely=0.40)
+                self.nroCadeiras = tk.Label(self.sala_individual, text=f'{nncadeira} pessoas', font='Inter 17',
+                                            bg='#F5F5F5')
+                self.nroCadeiras.place(relx=0.16, rely=0.40)
+
+                self.iconePcs = tk.PhotoImage(file=r'..\ProjetoFinal\computador.png')
+                self.label_iconePcs = tk.Label(self.sala_individual, image=self.iconePcs, bg='#F5F5F5')
+                self.label_iconePcs.place(relx=0.11, rely=0.45)
+                self.nroPcsSala = tk.Label(self.sala_individual, text=f'{nncomputador} computadores', font='Inter 17',
+                                           bg='#F5F5F5')
+                self.nroPcsSala.place(relx=0.16, rely=0.45)
+
+                self.iconeTelevisor = tk.PhotoImage(file=r'..\ProjetoFinal\tv.png')
+                self.label_iconeTelevisor = tk.Label(self.sala_individual, image=self.iconeTelevisor, bg='#F5F5F5')
+                self.label_iconeTelevisor.place(relx=0.11, rely=0.50)
+                self.nroTvs = tk.Label(self.sala_individual, text=f'{nntelevisor} televisores', font='Inter 17',
+                                       bg='#F5F5F5')
+                self.nroTvs.place(relx=0.16, rely=0.50)
+
+                self.iconeTela = tk.PhotoImage(file=r'..\ProjetoFinal\tela retratil.png')
+                self.label_iconeTela = tk.Label(self.sala_individual, image=self.iconeTela, bg='#F5F5F5')
+                self.label_iconeTela.place(relx=0.11, rely=0.55)
+                self.nroTela = tk.Label(self.sala_individual, text=f'{nntelaretratil} telas retratil', font='Inter 17',
                                         bg='#F5F5F5')
-            self.label_email.place(relx=0.15, relwidth=0.12, rely=0.45, relheight=0.05)
-            self.entrada_email = tk.Entry(self.janela_recuperar_senha, font='Inter 17', bg='#D9D9D9')
-            self.entrada_email.place(relx=0.28, relwidth=0.50, rely=0.45, relheight=0.05)
+                self.nroTela.place(relx=0.16, rely=0.55)
 
-            self.botao_enviar = tk.Button(self.janela_recuperar_senha, text='Enviar', font='Inter 17 bold',
-                                          fg='white', bg='#004AAD', command=lambda: self.enviar_email())
-            self.botao_enviar.place(relx=0.43, relwidth=0.20, rely=0.60, relheight=0.10)
+                self.iconeProjetor = tk.PhotoImage(file=r'..\ProjetoFinal\projetor.png')
+                self.label_iconeProjetor = tk.Label(self.sala_individual, image=self.iconeProjetor, bg='#F5F5F5')
+                self.label_iconeProjetor.place(relx=0.11, rely=0.60)
+                self.nroProjetor = tk.Label(self.sala_individual, text=f'{nnprojetor} projetores', font='Inter 17',
+                                            bg='#F5F5F5')
+                self.nroProjetor.place(relx=0.16, rely=0.60)
 
-            self.label_inferior = tk.Label(self.janela_recuperar_senha, bg='#004AAD')
-            self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
+                self.iconeQuadro = tk.PhotoImage(file=r'..\ProjetoFinal\quadro.png')
+                self.label_iconeQuadro = tk.Label(self.sala_individual, image=self.iconeQuadro, bg='#F5F5F5')
+                self.label_iconeQuadro.place(relx=0.11, rely=0.65)
+                self.nroQuadro = tk.Label(self.sala_individual, text=f'{nnquadro} quadro', font='Inter 17',
+                                          bg='#F5F5F5')
+                self.nroQuadro.place(relx=0.16, rely=0.65)
 
-    janela_recuperar = tk.Toplevel()
-    objetoJanelaRecuperar = Janela_Recuperar_Senha(janela_recuperar)
-    janela_recuperar.mainloop()
+                self.iconeArCondicionado = tk.PhotoImage(file=r'..\ProjetoFinal\ar condicionado.png')
+                self.label_iconeArCondicionado = tk.Label(self.sala_individual, image=self.iconeArCondicionado,
+                                                          bg='#F5F5F5')
+                self.label_iconeArCondicionado.place(relx=0.11, rely=0.60)
+                self.nroArCondicionado = tk.Label(self.sala_individual, text=f'{nnarcondicionado} ar-condicionado',
+                                                  font='Inter 17', bg='#F5F5F5')
+                self.nroArCondicionado.place(relx=0.16, rely=0.60)
 
+                self.sinalDispManhaSala = tk.Label(self.sala_individual, text='', width=3, height=1, bg='#F5F5F5')
+                self.dispManhaSala = tk.Label(self.sala_individual, text='Manhã', font='Inter 15', bg='#F5F5F5')
+                self.sinalDispManhaSala.place(relx=0.63, rely=0.305)
+                self.dispManhaSala.place(relx=0.65, rely=0.305)
+                self.sinalDispTardeSala = tk.Label(self.sala_individual, text='', width=3, height=1, bg='#F5F5F5')
+                self.dispTardeSala = tk.Label(self.sala_individual, text='Tarde', font='Inter 15', bg='#F5F5F5')
+                self.sinalDispTardeSala.place(relx=0.63, rely=0.35)
+                self.dispTardeSala.place(relx=0.65, rely=0.347)
+                self.sinalDispNoiteSala = tk.Label(self.sala_individual, text='', width=3, height=1, bg='#F5F5F5')
+                self.dispNoiteSala = tk.Label(self.sala_individual, text='Noite', font='Inter 15', bg='#F5F5F5')
+                self.sinalDispNoiteSala.place(relx=0.63, rely=0.395)
+                self.dispNoiteSala.place(relx=0.651, rely=0.39)
+
+                if nnmanha == 1:
+                    self.sinalDispManhaSala.config(bg='red')
+                if nntarde == 1:
+                    self.sinalDispTardeSala.config(bg='red')
+                if nnnoite == 1:
+                    self.sinalDispNoiteSala.config(bg='red')
+                if nnmanha == 0:
+                    self.sinalDispManhaSala.config(bg='green')
+                if nntarde == 0:
+                    self.sinalDispTardeSala.config(bg='green')
+                if nnnoite == 0:
+                    self.sinalDispNoiteSala.config(bg='green')
+
+                self.label_inferior = tk.Label(self.sala_individual, bg='#004AAD', height=95)
+                self.label_inferior.place(relx=0, relwidth=1, rely=0.92, relheight=0.08)
+
+                self.icone_editar = tk.PhotoImage(file=r'..\ProjetoFinal\editar.png')
+                self.label_icone_editar = tk.Label(self.sala_individual, image=self.icone_editar, bg='#F5F5F5')
+                self.label_icone_editar.place(relx=0.73, rely=0.85)
+                self.btn_editar = tk.Button(self.sala_individual, text='Editar',
+                                            font='Inter 13', relief=FLAT, bg='#F5F5F5',
+                                            fg='black', width=6, command=lambda: self.editar_sala())
+                self.btn_editar.place(relx=0.75, rely=0.85)
+
+                self.icone_excluir = tk.PhotoImage(file=r'..\ProjetoFinal\lixeira.png')
+                self.label_icone_excluir = tk.Label(self.sala_individual, image=self.icone_excluir, bg='#F5F5F5')
+                self.label_icone_excluir.place(relx=0.81, rely=0.85)
+                self.btn_excluir = tk.Button(self.sala_individual, text='Excluir',
+                                             font='Inter 13', bg='#F5F5F5',
+                                             fg='red', width=6, relief=FLAT, command=lambda: self.excluir_sala())
+                self.btn_excluir.place(relx=0.83, rely=0.85)
+
+            def editar_sala(self):
+                pass
+
+            def excluir_sala(self):
+                pass
+
+        sala_individual = tk.Toplevel()
+        objetoSalasGeral = TelaSala(sala_individual)
+        sala_individual.mainloop()
 
 janela = tk.Tk()
 conexao = conexaoBanco()
