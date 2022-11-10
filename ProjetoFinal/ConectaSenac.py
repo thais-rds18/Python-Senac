@@ -97,8 +97,8 @@ class Inicio:
 
     def telaRecuperarSenha(self):
         class Janela_Recuperar_Senha:
-            def __init__(self, janela):
-                self.janela_recuperar_senha = janela
+            def __init__(self, janela_recuperar):
+                self.janela_recuperar_senha = janela_recuperar
                 self.janela_recuperar_senha.title('Recuperação de Senha')  # Trocar o título da janela
                 self.janela_recuperar_senha.iconbitmap('icone.ico')  # Verificar se tem o ícone no seu arquivo
                 self.janela_recuperar_senha.geometry('690x550+300+10')
@@ -108,14 +108,13 @@ class Inicio:
                 self.label_superior = tk.Label(self.janela_recuperar_senha, bg='#004AAD')
                 self.label_superior.place(relx=0, relwidth=1, relheight=0.08, rely=0)
 
-                self.senac_logo = tk.PhotoImage(file=r'..\ProjetoFinal\logo_simbolo.png')
+                self.senac_logo = tk.PhotoImage(file='logo_simbolo.png')
                 self.label_senac_logo = tk.Label(self.janela_recuperar_senha, image=self.senac_logo, bg='#F5F5F5')
                 self.label_senac_logo.place(relx=0.02, rely=0.09)
 
-                self.label_Cadastro_usuario = tk.Label(self.janela_recuperar_senha, text='Recuperar Senha',
-                                                       bg='#F5F5F5',
-                                                       font='Inter 24 bold')
-                self.label_Cadastro_usuario.place(relx=0.15, relwidth=0.40, rely=0.08, relheight=0.15)
+                self.label_Recuperar_senha = tk.Label(self.janela_recuperar_senha, text='Recuperar Senha', bg='#F5F5F5',
+                                                      font='Inter 24 bold')
+                self.label_Recuperar_senha.place(relx=0.18, relwidth=0.40, rely=0.08, relheight=0.15)
 
                 self.label_cpf = tk.Label(self.janela_recuperar_senha, text='CPF:', font='Inter 17 bold', bg='#F5F5F5')
                 self.label_cpf.place(relx=0.15, relwidth=0.10, rely=0.35, relheight=0.05)
@@ -129,7 +128,7 @@ class Inicio:
                 self.entrada_email.place(relx=0.28, relwidth=0.50, rely=0.45, relheight=0.05)
 
                 self.botao_enviar = tk.Button(self.janela_recuperar_senha, text='Enviar', font='Inter 17 bold',
-                                                 fg='white', bg='#004AAD', command=lambda: self.enviar_email())
+                                              fg='white', bg='#004AAD', command=lambda: self.enviar_email())
                 self.botao_enviar.place(relx=0.43, relwidth=0.20, rely=0.60, relheight=0.10)
 
                 self.label_inferior = tk.Label(self.janela_recuperar_senha, bg='#004AAD')
@@ -461,8 +460,7 @@ def telaSalas():
             salas = comandosSQL(sql)
             self.exibir(salas)
 
-        def exibir(self, salas, pag = 0):
-
+        def exibir(self, salas, pag=0):
             if self.busca_componentes != None:
                 salas = self.busca_componentes
             if pag == '>':
@@ -478,6 +476,7 @@ def telaSalas():
                 pag = 1
             if pag != 1:
                 self.limpar()
+
             if len(salas) < 1:
                 pass
             else:
@@ -491,6 +490,7 @@ def telaSalas():
                     nncomputador = v[4]
                     nntelevisor = v[5]
                     nntelaretratil = v[6]
+                    nnmesa = v[7]
                     nnprojetor = v[8]
                     nnquadro = v[9]
                     nnarcondicionado = v[10]
@@ -515,6 +515,7 @@ def telaSalas():
                         self.nncomputador1 = nncomputador
                         self.nntelevisor1 = nntelevisor
                         self.nntelaretratil1 = nntelaretratil
+                        self.nnmesa1 = nnmesa
                         self.nnprojetor1 = nnprojetor
                         self.nnquadro1 = nnquadro
                         self.nnarcondicionado1 = nnarcondicionado
@@ -560,6 +561,7 @@ def telaSalas():
                         self.nncomputador2 = nncomputador
                         self.nntelevisor2 = nntelevisor
                         self.nntelaretratil2 = nntelaretratil
+                        self.nnmesa2 = nnmesa
                         self.nnprojetor2 = nnprojetor
                         self.nnquadro2 = nnquadro
                         self.nnarcondicionado2 = nnarcondicionado
@@ -605,6 +607,7 @@ def telaSalas():
                         self.nncomputador3 = nncomputador
                         self.nntelevisor3 = nntelevisor
                         self.nntelaretratil3 = nntelaretratil
+                        self.nnmesa3 = nnmesa
                         self.nnprojetor3 = nnprojetor
                         self.nnquadro3 = nnquadro
                         self.nnarcondicionado3 = nnarcondicionado
