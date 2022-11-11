@@ -31,7 +31,7 @@ def telaCadastrarSalas():
                                        anchor='w')
             self.label_polo.place(relx=0.513, relwidth=0.16, rely=0.23, relheight=0.035)
             self.entrada_polo = ttk.Combobox(self.cadastrar_salas, width=12,
-                                             values=['Faculdade Senac', 'Recife Sede', 'Aprendizagem'])
+                                             values=[' ','Faculdade Senac', 'Recife Sede', 'Aprendizagem'])
             self.entrada_polo.current()
             self.entrada_polo.place(relx=0.6, relwidth=0.213, rely=0.23, relheight=0.035)
 
@@ -112,8 +112,29 @@ def telaCadastrarSalas():
 
         def cadastrar(self):
             try:
-                if self.entrada_nome_sala.get() == '' or self.entrada_cadeiras.get() == '' or self.entrada_computadores.get() == '' or self.entrada_televisores.get() == '' or self.entrada_Tela_retratil.get() == '' or self.entrada_polo.get() == '' or self.entrada_mesas.get() == '' or self.entrada_projetores.get() == '' or self.entrada_quadros.get() == '' or self.entrada_ar_condicionado.get() == '' or self.entrada_andar.get() == '':
-                    messagebox.showerror('Atenção!', 'Preencha todos os campos!')
+                self.validar_cadastro_sala = list()
+                self.validar_cadastro_sala = (self.entrada_ID_sala.get(), self.entrada_cadeiras.get(), self.entrada_computadores.get(),
+                                  self.entrada_televisores.get(),self.entrada_Tela_retratil.get(), self.entrada_polo.get(),
+                                  self.entrada_mesas.get(), self.entrada_projetores.get(), self.entrada_quadros.get(),
+                                  self.entrada_ar_condicionado.get(), self.entrada_observacao.get(), self.entrada_polo.get())
+
+                for cadaResposta in self.validar_cadastro_sala:
+                    analise = bool(cadaResposta)
+                    if analise == False or cadaResposta.isspace() == True:
+                        messagebox.showwarning('Alerta', 'Preencha corretamente todos os campos')
+                        break
+
+                self.validar_numeros_cadastro_sala = list()
+                self.validar_numeros_cadastro_sala = (self.entrada_cadeiras.get(), self.entrada_computadores.get(), self.entrada_televisores.get(),
+                                        self.entrada_Tela_retratil.get(), self.entrada_mesas.get(),self.entrada_projetores.get(),
+                                        self.entrada_quadros.get(), self.entrada_ar_condicionado.get())
+
+                for cadaItem in self.validar_numeros_cadastro_sala:
+                    numero = bool(cadaItem)
+                    if numero == False or cadaItem.isnumeric() == False:
+                        messagebox.showerror('Erro de Entrada', 'Os campos:\n- Cadeira \n- Computadores \n- Televisores \n- Tela retratil'
+                                                                '\n- Mesas \n- Projetores \n- Quadros  \n- Ar condicionado \naceitam somente números')
+                        break
                 else:
                     c = self.conexao.cursor()
                     sql = "INSERT INTO salas (nome, cadeiras, computadores, televisores, tela_retratil, polo, mesas, projetores, quadros, ar_condicionado, andar, ocupado_manha, ocupado_tarde, ocupado_noite ) VALUES ( '" + self.entrada_nome_sala.get() + "', '" + self.entrada_cadeiras.get() + "','" + self.entrada_computadores.get()+ "', '" + self.entrada_televisores.get() + "', '" + self.entrada_Tela_retratil.get() + "', '" + self.entrada_polo.get() + "' , '" + self.entrada_mesas.get() + "', '" + self.entrada_projetores.get() + "', '" + self.entrada_quadros.get() + "', '" + self.entrada_ar_condicionado.get() + "', '" + self.entrada_andar.get() + "', 0, 0, 0)"
