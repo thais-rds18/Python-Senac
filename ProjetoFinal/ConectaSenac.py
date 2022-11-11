@@ -163,7 +163,6 @@ class Inicio:
                     smt.login(msg['From'], senha_email)
                     smt.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
 
-
             def comandosSQL(self, sql):
                 c = conexao.cursor()
                 c.execute(sql)
@@ -699,11 +698,11 @@ def telaSalas():
 
             sql = f'SELECT * FROM salas WHERE cadeiras>={cadeiras} AND mesas>={mesas} AND computadores>={pcs} AND televisores>={televisor} AND tela_retratil>={tela} AND projetores>={projetor} AND quadros>={quadro} AND ar_condicionado>={ar} {turno};'
             salas = comandosSQL(sql)
-            print(comandosSQL(sql))
+            # print(comandosSQL(sql))
             self.limpar()
             componentes = str(cadeiras) + str(mesas) + str(pcs) + str(projetor) + str(televisor) + str(quadro) + str(
                 tela) + str(ar) + str(turno)
-            print(componentes, type(componentes))
+            # print(componentes, type(componentes))
             if componentes == 0:
                 self.busca_componentes = None
             else:
@@ -772,6 +771,8 @@ def telaSalas():
 def telaProfessores():
     class TelaProfessores:
         def __init__(self, janela_professores_geral):
+            self.busca_componentes_prof = None
+            self.pag_prof = 1
             self.professores = janela_professores_geral
             self.professores.title('Professores')
             self.professores.iconbitmap('icone.ico')
@@ -888,6 +889,11 @@ def telaProfessores():
             self.dispNoiteProf3 = tk.Label(self.professores, text='', font='Inter 15')
             self.dispNoiteProf3.place(relx=0.751, rely=0.73)
 
+            self.botaoProx = tk.Button(self.professores, text='>', command=lambda: self.exibirProf(self.filtrarProfs(var1), pag='>'))
+            self.botaoProx.place(relx=0.63, relwidth=0.05, rely=0.79, relheight=0.05)
+            self.botaoAnte = tk.Button(self.professores, text='<', command=lambda: self.exibirProf(self.filtrarProfs(var1), pag='<'))
+            self.botaoAnte.place(relx=0.58, relwidth=0.05, rely=0.79, relheight=0.05)
+
             self.exibirProf(self.filtrarProfs(var1))
 
         def filtrarProfs(self, var1):
@@ -901,12 +907,29 @@ def telaProfessores():
             profs = comandosSQL(sql)
             return profs
 
-        def exibirProf(self, profs):
+        def exibirProf(self, profs, pag=0):
+            if self.busca_componentes_prof != None:
+                profs = self.busca_componentes_prof
+            if pag == '>':
+                self.pag_prof = self.pag_prof + 1
+            elif pag == '<':
+                self.pag_prof = self.pag_prof - 1
+            else:
+                pass
+            pag = self.pag_prof
+            # print(salas)
+            if pag < 1:
+                self.pag_prof = 1
+                pag = 1
+            if pag != 1:
+                self.limpar_prof()
+
             if len(profs) < 1:
                 pass
             else:
                 contadorprof = 0
-                for v in profs:
+                profstemp = profs[((3 * pag) - 3):(3 * pag)]
+                for v in profstemp:
                     nnnome = v[0]
                     nncpf = v[1]
                     nnemail = v[2]
@@ -919,6 +942,16 @@ def telaProfessores():
                         self.foneProf1.config(text=nnfone)
                         self.emailProf1.config(text=nnemail)
                         self.cpfProf1.config(text=nncpf)
+
+                        self.nnprof1 = nnnome
+                        self.nnesp1 = nnesp
+                        self.nnfone1 = nnfone
+                        self.nnemail1 = nnemail
+                        self.nncpf1 = nncpf
+
+                        self.botaoProf1.configure(
+                            command=lambda: telaProf(self.nnprof1, self.nncpf1, self.nnemail1, self.nnfone1,
+                                                     self.nnesp1))
                         self.botaoProf1.place(relx=0.321, relwidth=0.649, rely=0.291, relheight=0.148)
                     elif contadorprof == 2:
                         self.nomeProf2.config(text=nnnome)
@@ -927,6 +960,18 @@ def telaProfessores():
                         self.emailProf2.config(text=nnemail)
                         self.cpfProf2.config(text=nncpf)
                         self.botaoProf2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
+
+                        self.nnprof2 = nnnome
+                        self.nnesp2 = nnesp
+                        self.nnfone2 = nnfone
+                        self.nnemail2 = nnemail
+                        self.nncpf2 = nncpf
+
+                        self.botaoProf2.configure(
+                            command=lambda: telaProf(self.nnprof2, self.nncpf2, self.nnemail2, self.nnfone2,
+                                                     self.nnesp2))
+                        self.botaoProf2.place(relx=0.321, relwidth=0.649, rely=0.461, relheight=0.148)
+
                     elif contadorprof == 3:
                         self.nomeProf3.config(text=nnnome)
                         self.espProf3.config(text=nnesp)
@@ -935,6 +980,35 @@ def telaProfessores():
                         self.cpfProf3.config(text=nncpf)
                         self.botaoProf3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
 
+                        self.nnprof3 = nnnome
+                        self.nnesp3 = nnesp
+                        self.nnfone3 = nnfone
+                        self.nnemail3 = nnemail
+                        self.nncpf3 = nncpf
+
+                        self.botaoProf3.configure(
+                            command=lambda: telaProf(self.nnprof3, self.nncpf3, self.nnemail3, self.nnfone3,
+                                                     self.nnesp3))
+                        self.botaoProf3.place(relx=0.321, relwidth=0.649, rely=0.632, relheight=0.148)
+
+        def limpar_prof(self):
+            self.nomeProf1.config(text='')
+            self.espProf1.config(text='')
+            self.foneProf1.config(text='')
+            self.emailProf1.config(text='')
+            self.cpfProf1.config(text='')
+
+            self.nomeProf2.config(text='')
+            self.espProf2.config(text='')
+            self.foneProf2.config(text='')
+            self.emailProf2.config(text='')
+            self.cpfProf2.config(text='')
+
+            self.nomeProf3.config(text='')
+            self.espProf3.config(text='')
+            self.foneProf3.config(text='')
+            self.emailProf3.config(text='')
+            self.cpfProf3.config(text='')
     def comandosSQL(sql):
         c = conexao.cursor()
         c.execute(sql)
@@ -1280,7 +1354,7 @@ def telaCadastrarProfessores():
 
         def cadastrarProf(self):
             try:
-                if self.entrada_nome_professor.get() == '' or self.entrada_CPF.get() == '' or self.entrada_email.get() or self.entrada_fone.get() or self.entrada_conhecimento.get():
+                if self.entrada_nome_professor.get() == '' or self.entrada_CPF.get() == '' or self.entrada_email.get() == '' or self.entrada_fone.get() == '' or self.entrada_conhecimento.get() == '':
                     messagebox.showerror('Atenção!', 'Preencha todos os campos!')
                 else:
                     c = self.conexao.cursor()
@@ -1434,6 +1508,96 @@ def telaSala(nnsala, nnpolo, nnandar, nncadeira,nncomputador, nntelevisor, nntel
         sala_individual = tk.Toplevel()
         objetoSalasGeral = TelaSala(sala_individual)
         sala_individual.mainloop()
+
+
+def telaProf(nnprof, nncpf, nnemail, nnfone, nnesp):
+    class TelaProf:
+        def __init__(self, sala_individual):
+            self.prof_individual = sala_individual
+            self.prof_individual.title('Professor')
+            self.prof_individual.iconbitmap('icone.ico')
+            self.prof_individual.geometry('1440x750+50+10')
+            self.prof_individual['bg'] = '#F5F5F5'
+            self.prof_individual.resizable(False, False)
+
+            self.label_superior = tk.Label(self.prof_individual, bg='#004AAD', height=95)
+            self.label_superior.place(relx=0, relwidth=1, rely=0, relheight=0.08)
+
+            self.senac_logo = tk.PhotoImage(file=r'..\ProjetoFinal\logo_simbolo.png')
+            self.label_senac_logo = tk.Label(self.prof_individual, image=self.senac_logo, bg='#F5F5F5')
+            self.label_senac_logo.place(relx=0.1, rely=0.11)
+            self.label_titulo_salas = tk.Label(self.prof_individual, text='Salas', font='Inter 28 bold',
+                                               bg='#F5F5F5')
+            self.label_titulo_salas.place(relx=0.19, rely=0.13)
+
+            self.botao_voltar_sala_indiviual = tk.Button(self.prof_individual, text='Voltar',
+                                                         font='Inter 17 bold', fg='white', bg='#004AAD',
+                                                         relief=FLAT,
+                                                         command=lambda: self.prof_individual.destroy())
+            self.botao_voltar_sala_indiviual.place(relx=0.8, relwidth=0.1, rely=0.15)
+
+            self.label_titulo_sala = tk.Label(self.prof_individual, text=nnprof, font='Inter 24 bold', bg='#F5F5F5')
+            self.label_titulo_sala.place(relx=0.1, rely=0.25)
+            self.andarpoloSala = tk.Label(self.prof_individual, text=f'', font='Inter 22',
+                                          bg='#F5F5F5')
+            self.andarpoloSala.place(relx=0.18, rely=0.25)
+
+            self.iconeCPF = tk.PhotoImage(file=r'..\ProjetoFinal\cpf.png')
+            self.label_iconeCPF = tk.Label(self.prof_individual, image=self.iconeCPF, bg='#F5F5F5')
+            self.label_iconeCPF.place(relx=0.11, rely=0.40)
+            self.nroCPF = tk.Label(self.prof_individual, text=f'{nncpf}', font='Inter 17',
+                                        bg='#F5F5F5')
+            self.nroCPF.place(relx=0.16, rely=0.40)
+
+            self.iconeemail = tk.PhotoImage(file=r'..\ProjetoFinal\email.png')
+            self.label_iconeemail = tk.Label(self.prof_individual, image=self.iconeemail, bg='#F5F5F5')
+            self.label_iconeemail.place(relx=0.11, rely=0.45)
+            self.endemail = tk.Label(self.prof_individual, text=f'{nnemail}', font='Inter 17',
+                                       bg='#F5F5F5')
+            self.endemail.place(relx=0.16, rely=0.45)
+
+            self.iconefone = tk.PhotoImage(file=r'..\ProjetoFinal\fone.png')
+            self.label_iconefone = tk.Label(self.prof_individual, image=self.iconefone, bg='#F5F5F5')
+            self.label_iconefone.place(relx=0.11, rely=0.50)
+            self.nrofone = tk.Label(self.prof_individual, text=f'{nnfone}', font='Inter 17',
+                                   bg='#F5F5F5')
+            self.nrofone.place(relx=0.16, rely=0.50)
+
+            self.iconeesp = tk.PhotoImage(file=r'..\ProjetoFinal\especialidades.png')
+            self.label_iconeesp = tk.Label(self.prof_individual, image=self.iconeesp, bg='#F5F5F5')
+            self.label_iconeesp.place(relx=0.11, rely=0.55)
+            self.nroesp = tk.Label(self.prof_individual, text=f'{nnesp}', font='Inter 17',
+                                    bg='#F5F5F5')
+            self.nroesp.place(relx=0.16, rely=0.55)
+
+            self.label_inferior = tk.Label(self.prof_individual, bg='#004AAD', height=95)
+            self.label_inferior.place(relx=0, relwidth=1, rely=0.92, relheight=0.08)
+
+            self.icone_editar = tk.PhotoImage(file=r'..\ProjetoFinal\editar.png')
+            self.label_icone_editar = tk.Label(self.prof_individual, image=self.icone_editar, bg='#F5F5F5')
+            self.label_icone_editar.place(relx=0.73, rely=0.85)
+            self.btn_editar = tk.Button(self.prof_individual, text='Editar',
+                                        font='Inter 13', relief=FLAT, bg='#F5F5F5',
+                                        fg='black', width=6, command=lambda: self.editar_prof())
+            self.btn_editar.place(relx=0.75, rely=0.85)
+
+            self.icone_excluir = tk.PhotoImage(file=r'..\ProjetoFinal\lixeira.png')
+            self.label_icone_excluir = tk.Label(self.prof_individual, image=self.icone_excluir, bg='#F5F5F5')
+            self.label_icone_excluir.place(relx=0.81, rely=0.85)
+            self.btn_excluir = tk.Button(self.prof_individual, text='Excluir',
+                                         font='Inter 13', bg='#F5F5F5',
+                                         fg='red', width=6, relief=FLAT, command=lambda: self.excluir_prof())
+            self.btn_excluir.place(relx=0.83, rely=0.85)
+
+        def editar_prof(self):
+            pass
+
+        def excluir_prof(self):
+            pass
+
+    prof_individual = tk.Toplevel()
+    objetoSalasGeral = TelaProf(prof_individual)
+    prof_individual.mainloop()
 
 janela = tk.Tk()
 conexao = conexaoBanco()
