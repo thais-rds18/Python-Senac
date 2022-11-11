@@ -134,12 +134,39 @@ class Inicio:
                 self.label_inferior = tk.Label(self.janela_recuperar_senha, bg='#004AAD')
                 self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
 
-
             def enviar_email(self):
+                import email
+                import smtplib
                 cpf = self.entrada_cpf.get()
-                email = self.entrada_email.get()
-                print(cpf, email)
-                # sql = f'SELECT * FROM salas WHERE cpf={cpf}
+                endereco_email = self.entrada_email.get()
+                sql = f'SELECT * FROM login WHERE cpf={cpf}'
+                dado = self.comandosSQL(sql)
+                if len(dado) < 1:
+                    messagebox.showerror('Erro', 'CPF não cadastrado!')
+                elif '@' not in endereco_email:
+                    messagebox.showerror('Erro', 'Email inválido!')
+                else:
+                    messagebox.showinfo('Sucesso!',
+                                        'Senha enviada para o email fornecido. Se não encontrar na caixa de entrada, verifique o spam/lixo.')
+                    senha_usuario = dado[0][5]
+                    provedor = '@gmail.com'
+                    msg = email.message.Message()
+                    msg['Subject'] = 'Recuperação de senha'
+                    msg['From'] = 'contafalsaparajogarfora1123' + provedor
+                    msg['To'] = endereco_email
+                    senha_email = 'zruucbxmjfpiwzgk'  # Não alterar
+                    msg.add_header('Content-Type', 'text/html')
+                    msg.set_payload(f'A sua senha recuperada: {senha_usuario}.')
+
+                    smt = smtplib.SMTP('smtp.gmail.com: 587')
+                    smt.starttls()
+                    smt.login(msg['From'], senha_email)
+                    smt.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+
+            def comandosSQL(self, sql):
+                c = conexao.cursor()
+                c.execute(sql)
+                return c.fetchall()
 
         janela = tk.Toplevel()
         objetoJanela = Janela_Recuperar_Senha(janela)
