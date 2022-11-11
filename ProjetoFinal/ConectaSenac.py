@@ -163,6 +163,7 @@ class Inicio:
                     smt.login(msg['From'], senha_email)
                     smt.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
 
+
             def comandosSQL(self, sql):
                 c = conexao.cursor()
                 c.execute(sql)
