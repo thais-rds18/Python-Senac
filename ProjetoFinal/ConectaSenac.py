@@ -6,7 +6,6 @@ import sqlite3
 from sqlite3 import Error
 from tkinter import messagebox
 from tkcalendar import DateEntry
-from babel import *
 
 
 class Inicio:
