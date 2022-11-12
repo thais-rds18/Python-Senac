@@ -104,10 +104,29 @@ def telaCadastrarCurso():
             self.label_inferior.place(relx=0, relwidth=1, relheight=0.08, rely=0.92)
 
         def cadastrarCurso(self):
-            turno = ''
             try:
-                if self.entrada_nome.get() or self.entrada_Hora_Total.get() == '' or self.entrada_Hora_Diaria.get() == '' or self.entrada_inicio.get() == '' or self.entrada_fim.get() == '' or self.entrada_CPF_professor.get() == '' or self.entrada_Sala.get() == '' or self.entrada_polo.get() == '' or self.entrada_andar.get() == '' or self.entrada_Turno.get()== '':
-                    messagebox.showerror('Atenção!', 'Preencha todos os campos!')
+                self.validar_cadastro_curso = list()
+                self.validar_cadastro_curso = [self.entrada_nome.get(), self.entrada_Hora_Total.get(),
+                                               self.entrada_Hora_Diaria.get(), self.entrada_Turno.get(),
+                                               self.entrada_inicio.get(), self.entrada_fim.get(),
+                                               self.entrada_CPF_professor.get(), self.entrada_Sala.get(),
+                                               self.entrada_polo.get(), self.entrada_andar.get()]
+
+                for cadaResposta in self.validar_cadastro_curso:
+                    analise = bool(cadaResposta)
+                    if analise == False or cadaResposta.isspace() == True:
+                        messagebox.showinfo('Alerta', 'Preencha corretamente todos os campos')
+                        break
+
+                self.validar_numeros_cadastro_cruso = list()
+                self.validar_numeros_cadastro_cruso = [self.entrada_Hora_Total.get(), self.entrada_Hora_Diaria.get(),
+                                                       self.entrada_CPF_professor.get()]
+
+                for cadaItem in self.validar_numeros_cadastro_cruso:
+                    if cadaItem.isnumeric() == False:
+                        messagebox.showerror('Erro de Entrada', 'Os campos:\n- Carga Horária Total \n- Carga Horária Diária \n- CPF do Professor'
+                                                                '\naceitam somente números!')
+                        break
                 else:
                     c = self.conexao.cursor()
                     sql = "INSERT INTO curso (nome, hora_total, hora_diaria, entrada_inicio, entrada_fim, CPF_professor, nomeSala, polo, andar) VALUES ( '" + self.entrada_nome.get() + "', '" + self.entrada_Hora_Total.get() + "','" + self.entrada_Hora_Diaria.get() + "', '" + self.entrada_inicio.get() + "', '" + self.entrada_fim.get() + "', '" + self.entrada_CPF_professor.get() + "' , '" + self.entrada_Sala.get() + "', '" + self.entrada_polo.get() + "', '" + self.entrada_andar.get() + "');"
